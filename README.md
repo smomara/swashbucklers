@@ -1,4 +1,6 @@
 # swashbucklers
-swashbucklers cp 12
+Swashbucklers - CPXII
 
-Sean, Dennis, Luke, Matthew, Carter, and Cole
+Repo for the CyberPatriot XII competition.
+
+Members: Sean, Dennis, Luke, Matthew, Carter, and Cole
