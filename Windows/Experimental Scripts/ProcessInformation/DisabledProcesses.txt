@@ -1,0 +1,89 @@
+AdobeUpdateService {AdobeUpdateService}
+Adobe Genuine Monitor Service {AGMService}
+Adobe Genuine Software Integrity Service {AGSService}
+AMD External Events Utility {AMD External Events Utility}
+Apple Mobile Device Service {Apple Mobile Device Service}
+Windows Audio Endpoint Builder {AudioEndpointBuilder}
+Windows Audio {Audiosrv}
+AMD User Experience Program Launcher {AUEPLauncher}
+Base Filtering Engine {BFE}
+Background Intelligent Transfer Service {BITS}
+Background Tasks Infrastructure Service {BrokerInfrastructure}
+Connected Devices Platform Service {CDPSvc}
+Connected Devices Platform User Service_3261c246 {CDPUserSvc_3261c246}
+CdRom Device Arbiter service {CdRomArbiterService}
+Microsoft Office Click-to-Run Service {ClickToRunSvc}
+CoreMessaging {CoreMessagingRegistrar}
+Cryptographic Services {CryptSvc}
+Offline Files {CscService}
+DCOM Server Process Launcher {DcomLaunch}
+Device Association Service {DeviceAssociationService}
+DHCP Client {Dhcp}
+Connected User Experiences and Telemetry {DiagTrack}
+DNS Client {Dnscache}
+Delivery Optimization {DoSvc}
+Diagnostic Policy Service {DPS}
+Data Usage {DusmSvc}
+Windows Event Log {EventLog}
+COM+ Event System {EventSystem}
+Everything {Everything}
+Function Discovery Provider Host {fdPHost}
+Windows Font Cache Service {FontCache}
+Group Policy Client {gpsvc}
+Google Update Service (gupdate) {gupdate}
+Intel(R) Rapid Storage Technology {IAStorDataMgrSvc}
+IKE and AuthIP IPsec Keying Modules {IKEEXT}
+IP Helper {iphlpsvc}
+Intel(R) Dynamic Application Loader Host Interface Service {jhi_service}
+Server {LanmanServer}
+Workstation {LanmanWorkstation}
+Intel(R) Management and Security Application Local Management Service {LMS}
+Logitech Gaming Registry Service {LogiRegistryService}
+Local Session Manager {LSM}
+Downloaded Maps Manager {MapsBroker}
+Windows Defender Firewall {mpssvc}
+Network Location Awareness {NlaSvc}
+Network Store Interface Service {nsi}
+Sync Host_3261c246 {OneSyncSvc_3261c246}
+Origin Web Helper Service {Origin Web Helper Service}
+Power {Power}
+User Profile Service {ProfSvc}
+Remote Access Connection Manager {RasMan}
+RPC Endpoint Mapper {RpcEptMapper}
+Remote Procedure Call (RPC) {RpcSs}
+Security Accounts Manager {SamSs}
+Task Scheduler {Schedule}
+System Event Notification Service {SENS}
+System Guard Runtime Monitor Broker {SgrmBroker}
+Shell Hardware Detection {ShellHWDetection}
+Print Spooler {Spooler}
+Software Protection {sppsvc}
+SQL Server VSS Writer {SQLWriter}
+Windows Image Acquisition (WIA) {stisvc}
+SysMain {SysMain}
+System Events Broker {SystemEventsBroker}
+Intel(R) System Usage Report Service SystemUsageReportSvc_QUEENCREEK {SystemUsageReportSvc_QUEENCREEK}
+Themes {Themes}
+Distributed Link Tracking Client {TrkWks}
+User Manager {UserManager}
+Update Orchestrator Service {UsoSvc}
+VMware Authorization Service {VMAuthdService}
+VMware DHCP Service {VMnetDHCP}
+VMware USB Arbitration Service {VMUSBArbService}
+VMware NAT Service {VMware NAT Service}
+Windows Connection Manager {Wcmsvc}
+Windows Defender Antivirus Service {WinDefend}
+Windows Management Instrumentation {Winmgmt}
+Windows Push Notifications System Service {WpnService}
+Windows Push Notifications User Service_3261c246 {WpnUserService_3261c246}
+Security Center {wscsvc}
+Windows Search {WSearch}
+YSearchUtilSvc {YSearchUtilSvc}
+Microsoft App-V Client {AppVClient}
+Net.Tcp Port Sharing Service {NetTcpPortSharing}
+Routing and Remote Access {RemoteAccess}
+Remote Registry {RemoteRegistry}
+Shared PC Account Manager {shpamsvc}
+OpenSSH Authentication Agent {ssh-agent}
+Auto Time Zone Updater {tzautoupdate}
+User Experience Virtualization Service {UevAgentService}

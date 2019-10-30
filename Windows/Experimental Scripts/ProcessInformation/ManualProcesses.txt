@@ -1,0 +1,281 @@
+AdobeUpdateService {AdobeUpdateService}
+Adobe Genuine Monitor Service {AGMService}
+Adobe Genuine Software Integrity Service {AGSService}
+AMD External Events Utility {AMD External Events Utility}
+Apple Mobile Device Service {Apple Mobile Device Service}
+Windows Audio Endpoint Builder {AudioEndpointBuilder}
+Windows Audio {Audiosrv}
+AMD User Experience Program Launcher {AUEPLauncher}
+Base Filtering Engine {BFE}
+Background Intelligent Transfer Service {BITS}
+Background Tasks Infrastructure Service {BrokerInfrastructure}
+Connected Devices Platform Service {CDPSvc}
+Connected Devices Platform User Service_3261c246 {CDPUserSvc_3261c246}
+CdRom Device Arbiter service {CdRomArbiterService}
+Microsoft Office Click-to-Run Service {ClickToRunSvc}
+CoreMessaging {CoreMessagingRegistrar}
+Cryptographic Services {CryptSvc}
+Offline Files {CscService}
+DCOM Server Process Launcher {DcomLaunch}
+Device Association Service {DeviceAssociationService}
+DHCP Client {Dhcp}
+Connected User Experiences and Telemetry {DiagTrack}
+DNS Client {Dnscache}
+Delivery Optimization {DoSvc}
+Diagnostic Policy Service {DPS}
+Data Usage {DusmSvc}
+Windows Event Log {EventLog}
+COM+ Event System {EventSystem}
+Everything {Everything}
+Function Discovery Provider Host {fdPHost}
+Windows Font Cache Service {FontCache}
+Group Policy Client {gpsvc}
+Google Update Service (gupdate) {gupdate}
+Intel(R) Rapid Storage Technology {IAStorDataMgrSvc}
+IKE and AuthIP IPsec Keying Modules {IKEEXT}
+IP Helper {iphlpsvc}
+Intel(R) Dynamic Application Loader Host Interface Service {jhi_service}
+Server {LanmanServer}
+Workstation {LanmanWorkstation}
+Intel(R) Management and Security Application Local Management Service {LMS}
+Logitech Gaming Registry Service {LogiRegistryService}
+Local Session Manager {LSM}
+Downloaded Maps Manager {MapsBroker}
+Windows Defender Firewall {mpssvc}
+Network Location Awareness {NlaSvc}
+Network Store Interface Service {nsi}
+Sync Host_3261c246 {OneSyncSvc_3261c246}
+Origin Web Helper Service {Origin Web Helper Service}
+Power {Power}
+User Profile Service {ProfSvc}
+Remote Access Connection Manager {RasMan}
+RPC Endpoint Mapper {RpcEptMapper}
+Remote Procedure Call (RPC) {RpcSs}
+Security Accounts Manager {SamSs}
+Task Scheduler {Schedule}
+System Event Notification Service {SENS}
+System Guard Runtime Monitor Broker {SgrmBroker}
+Shell Hardware Detection {ShellHWDetection}
+Print Spooler {Spooler}
+Software Protection {sppsvc}
+SQL Server VSS Writer {SQLWriter}
+Windows Image Acquisition (WIA) {stisvc}
+SysMain {SysMain}
+System Events Broker {SystemEventsBroker}
+Intel(R) System Usage Report Service SystemUsageReportSvc_QUEENCREEK {SystemUsageReportSvc_QUEENCREEK}
+Themes {Themes}
+Distributed Link Tracking Client {TrkWks}
+User Manager {UserManager}
+Update Orchestrator Service {UsoSvc}
+VMware Authorization Service {VMAuthdService}
+VMware DHCP Service {VMnetDHCP}
+VMware USB Arbitration Service {VMUSBArbService}
+VMware NAT Service {VMware NAT Service}
+Windows Connection Manager {Wcmsvc}
+Windows Defender Antivirus Service {WinDefend}
+Windows Management Instrumentation {Winmgmt}
+Windows Push Notifications System Service {WpnService}
+Windows Push Notifications User Service_3261c246 {WpnUserService_3261c246}
+Security Center {wscsvc}
+Windows Search {WSearch}
+YSearchUtilSvc {YSearchUtilSvc}
+Microsoft App-V Client {AppVClient}
+Net.Tcp Port Sharing Service {NetTcpPortSharing}
+Routing and Remote Access {RemoteAccess}
+Remote Registry {RemoteRegistry}
+Shared PC Account Manager {shpamsvc}
+OpenSSH Authentication Agent {ssh-agent}
+Auto Time Zone Updater {tzautoupdate}
+User Experience Virtualization Service {UevAgentService}
+AllJoyn Router Service {AJRouter}
+Application Layer Gateway Service {ALG}
+Application Identity {AppIDSvc}
+Application Information {Appinfo}
+Application Management {AppMgmt}
+App Readiness {AppReadiness}
+AppX Deployment Service (AppXSVC) {AppXSvc}
+ASUS Com Service {asComSvc}
+ASUS HM Com Service {asHmComSvc}
+ASP.NET State Service {aspnet_state}
+AssignedAccessManager Service {AssignedAccessManagerSvc}
+ASUS System Control Service {AsSysCtrlService}
+AsusFanControlService {AsusFanControlService}
+ActiveX Installer (AxInstSV) {AxInstSV}
+GameDVR and Broadcast User Service_3261c246 {BcastDVRUserService_3261c246}
+BitLocker Drive Encryption Service {BDESVC}
+BattlEye Service {BEService}
+Bluetooth User Support Service_3261c246 {BluetoothUserService_3261c246}
+Computer Browser {Browser}
+Bluetooth Audio Gateway Service {BTAGService}
+AVCTP service {BthAvctpSvc}
+Bluetooth Support Service {bthserv}
+Capability Access Manager Service {camsvc}
+CaptureService_3261c246 {CaptureService_3261c246}
+Clipboard User Service_3261c246 {cbdhsvc_3261c246}
+Certificate Propagation {CertPropSvc}
+Client License Service (ClipSVC) {ClipSVC}
+COM+ System Application {COMSysApp}
+ConsentUX_3261c246 {ConsentUxUserSvc_3261c246}
+Optimize drives {defragsvc}
+Device Install Service {DeviceInstall}
+DevicePicker_3261c246 {DevicePickerUserSvc_3261c246}
+DevicesFlow_3261c246 {DevicesFlowUserSvc_3261c246}
+DevQuery Background Discovery Broker {DevQueryBroker}
+Microsoft (R) Diagnostics Hub Standard Collector Service {diagnosticshub.standardcollector.service}
+Diagnostic Execution Service {diagsvc}
+Display Enhancement Service {DisplayEnhancementService}
+Device Management Enrollment Service {DmEnrollmentSvc}
+Device Management Wireless Application Protocol (WAP) Push message Routing Service {dmwappushservice}
+Wired AutoConfig {dot3svc}
+Device Setup Manager {DsmSvc}
+Data Sharing Service {DsSvc}
+Extensible Authentication Protocol {Eaphost}
+EasyAntiCheat {EasyAntiCheat}
+Encrypting File System (EFS) {EFS}
+Embedded Mode {embeddedmode}
+Enterprise App Management Service {EntAppSvc}
+Energy Server Service queencreek {ESRV_SVC_QUEENCREEK}
+Fax {Fax}
+Function Discovery Resource Publication {FDResPub}
+File History Service {fhsvc}
+Windows Presentation Foundation Font Cache 3.0.0.0 {FontCache3.0.0.0}
+Windows Camera Frame Server {FrameServer}
+Google Chrome Elevation Service {GoogleChromeElevationService}
+GraphicsPerfSvc {GraphicsPerfSvc}
+Google Update Service (gupdatem) {gupdatem}
+Human Interface Device Service {hidserv}
+HV Host Service {HvHost}
+Windows Mobile Hotspot Service {icssvc}
+Microsoft Store Install Service {InstallService}
+Intel(R) Capability Licensing Service TCP IP Interface {Intel(R) Capability Licensing Service TCP IP Interface}
+IP Translation Configuration Service {IpxlatCfgSvc}
+Infrared monitor service {irmon}
+CNG Key Isolation {KeyIso}
+KtmRm for Distributed Transaction Coordinator {KtmRm}
+Geolocation Service {lfsvc}
+Windows License Manager Service {LicenseManager}
+Link-Layer Topology Discovery Mapper {lltdsvc}
+TCP/IP NetBIOS Helper {lmhosts}
+Language Experience Service {LxpSvc}
+MessagingService_3261c246 {MessagingService_3261c246}
+Distributed Transaction Coordinator {MSDTC}
+Microsoft iSCSI Initiator Service {MSiSCSI}
+Windows Installer {msiserver}
+Natural Authentication {NaturalAuthentication}
+Network Connectivity Assistant {NcaSvc}
+Network Connection Broker {NcbService}
+Network Connected Devices Auto-Setup {NcdAutoSetup}
+Netlogon {Netlogon}
+Network Connections {Netman}
+Network List Service {netprofm}
+Network Setup Service {NetSetupSvc}
+Microsoft Passport Container {NgcCtnrSvc}
+Microsoft Passport {NgcSvc}
+Origin Client Service {Origin Client Service}
+Office  Source Engine {ose}
+Peer Networking Identity Manager {p2pimsvc}
+Peer Networking Grouping {p2psvc}
+Program Compatibility Assistant Service {PcaSvc}
+BranchCache {PeerDistSvc}
+Windows Perception Simulation Service {perceptionsimulation}
+Performance Counter DLL Host {PerfHost}
+Phone Service {PhoneSvc}
+Contact Data_3261c246 {PimIndexMaintenanceSvc_3261c246}
+Performance Logs & Alerts {pla}
+Plug and Play {PlugPlay}
+PNRP Machine Name Publication Service {PNRPAutoReg}
+Peer Name Resolution Protocol {PNRPsvc}
+IPsec Policy Agent {PolicyAgent}
+Printer Extensions and Notifications {PrintNotify}
+PrintWorkflow_3261c246 {PrintWorkflowUserSvc_3261c246}
+Windows PushToInstall Service {PushToInstall}
+Quality Windows Audio Video Experience {QWAVE}
+Remote Access Auto Connection Manager {RasAuto}
+Retail Demo Service {RetailDemo}
+Radio Management Service {RmSvc}
+Remote Procedure Call (RPC) Locator {RpcLocator}
+Smart Card {SCardSvr}
+Smart Card Device Enumeration Service {ScDeviceEnum}
+Smart Card Removal Policy {SCPolicySvc}
+Windows Backup {SDRSVC}
+Secondary Logon {seclogon}
+Windows Security Service {SecurityHealthService}
+Payments and NFC/SE Manager {SEMgrSvc}
+Windows Defender Advanced Threat Protection Service {Sense}
+Sensor Data Service {SensorDataService}
+Sensor Service {SensorService}
+Sensor Monitoring Service {SensrSvc}
+Remote Desktop Configuration {SessionEnv}
+Internet Connection Sharing (ICS) {SharedAccess}
+Spatial Data Service {SharedRealitySvc}
+Microsoft Storage Spaces SMP {smphost}
+Microsoft Windows SMS Router Service. {SmsRouter}
+SNMP Trap {SNMPTRAP}
+Windows Perception Service {spectrum}
+SSDP Discovery {SSDPSRV}
+Secure Socket Tunneling Protocol Service {SstpSvc}
+State Repository Service {StateRepository}
+Steam Client Service {Steam Client Service}
+Storage Service {StorSvc}
+Spot Verifier {svsvc}
+Microsoft Software Shadow Copy Provider {swprv}
+Touch Keyboard and Handwriting Panel Service {TabletInputService}
+Telephony {TapiSrv}
+Remote Desktop Services {TermService}
+Storage Tiers Management {TieringEngineService}
+Time Broker {TimeBrokerSvc}
+Web Account Manager {TokenBroker}
+Windows Modules Installer {TrustedInstaller}
+Remote Desktop Services UserMode Port Redirector {UmRdpService}
+User Data Storage_3261c246 {UnistoreSvc_3261c246}
+UPnP Device Host {upnphost}
+User Energy Server Service queencreek {USER_ESRV_SVC_QUEENCREEK}
+User Data Access_3261c246 {UserDataSvc_3261c246}
+Volumetric Audio Compositor Service {VacSvc}
+Credential Manager {VaultSvc}
+Virtual Disk {vds}
+Hyper-V Guest Service Interface {vmicguestinterface}
+Hyper-V Heartbeat Service {vmicheartbeat}
+Hyper-V Data Exchange Service {vmickvpexchange}
+Hyper-V Remote Desktop Virtualization Service {vmicrdv}
+Hyper-V Guest Shutdown Service {vmicshutdown}
+Hyper-V Time Synchronization Service {vmictimesync}
+Hyper-V PowerShell Direct Service {vmicvmsession}
+Hyper-V Volume Shadow Copy Requestor {vmicvss}
+Volume Shadow Copy {VSS}
+Visual Studio Standard Collector Service 150 {VSStandardCollectorService150}
+Windows Time {W32Time}
+Windows Update Medic Service {WaaSMedicSvc}
+WalletService {WalletService}
+WarpJITSvc {WarpJITSvc}
+Block Level Backup Engine Service {wbengine}
+Windows Biometric Service {WbioSrvc}
+Windows Connect Now - Config Registrar {wcncsvc}
+Diagnostic Service Host {WdiServiceHost}
+Diagnostic System Host {WdiSystemHost}
+Windows Defender Antivirus Network Inspection Service {WdNisSvc}
+WebClient {WebClient}
+Windows Event Collector {Wecsvc}
+Windows Encryption Provider Host Service {WEPHOSTSVC}
+Problem Reports and Solutions Control Panel Support {wercplsupport}
+Windows Error Reporting Service {WerSvc}
+Wi-Fi Direct Services Connection Manager Service {WFDSConMgrSvc}
+Still Image Acquisition Events {WiaRpc}
+WinHTTP Web Proxy Auto-Discovery Service {WinHttpAutoProxySvc}
+Windows Remote Management (WS-Management) {WinRM}
+Windows Insider Service {wisvc}
+WLAN AutoConfig {WlanSvc}
+Microsoft Account Sign-in Assistant {wlidsvc}
+Local Profile Assistant Service {wlpasvc}
+Windows Management Service {WManSvc}
+WMI Performance Adapter {wmiApSrv}
+Windows Media Player Network Sharing Service {WMPNetworkSvc}
+Work Folders {workfolderssvc}
+Parental Controls {WpcMonSvc}
+Portable Device Enumerator Service {WPDBusEnum}
+Windows Update {wuauserv}
+WWAN AutoConfig {WwanSvc}
+Xbox Live Auth Manager {XblAuthManager}
+Xbox Live Game Save {XblGameSave}
+Xbox Accessory Management Service {XboxGipSvc}
+Xbox Live Networking Service {XboxNetApiSvc}
