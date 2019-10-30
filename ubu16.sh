@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# cyberpatriot bash script
-# dark.red
+# cyberpatriot bash script for ubuntu 16
+# swashbucklers
 
 # checks for sudo
 if [ $EUID -ne 0 ]
@@ -25,8 +25,8 @@ fi
 
 # displays menu
 function menu(){                
-	echo -e "\e[31mdark.red"
-	echo -e "\e[39mChoose a task"
+	echo "Swashbucklers"
+	echo "Choose a task"
 	echo "1) Updates"
 	echo "2) Users and Groups"
 	echo "3) User Policy"
