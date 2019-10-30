@@ -362,19 +362,19 @@ function userPolicy(){
 	# configures common-password
 	echo ""
 	echo "Enforcing password complexity and history..."
-	if [[ $(grep -v '^#' | grep 'pam_cracklib.so' /etc/common-password) ]]
+	if [[ $(grep -v '^#' | grep 'pam_cracklib.so' /etc/pam.d/common-password) ]]
 	then
 		sed -i '/^password * pam_cracklib.so/ c\password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1' /etc/login.defs
 	else
 		echo "password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1" >> /etc/pam.d/common-password
 	fi
-	if [[ $(grep -v '^#' | grep 'pam_pwhistory.so' /etc/common-password) ]]
+	if [[ $(grep -v '^#' | grep 'pam_pwhistory.so' /etc/pam.d/common-password) ]]
 	then
 		sed -i '/^password * pam_pwhistory.so/ c\password required pam_pwhistory.so remember=24 use_authtok' /etc/login.defs
 	else
 		echo "password required pam_pwhistory.so remember=24 use_authtok" >> /etc/pam.d/common-password
 	fi
-	if [[ $(grep -v '^#' | grep 'pam_unix.so' /etc/common-password) ]]
+	if [[ $(grep -v '^#' | grep 'pam_unix.so' /etc/pam.d/common-password) ]]
 	then
 		sed -i '/^password * pam_unix.so/ c\password [success=1 default=ignore] pam_unix.so sha512' /etc/login.defs
 	else
