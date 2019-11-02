@@ -1,68 +1,23 @@
 function Edit-Service {
-    param( $serviceName, $newStatus, $newStartType )
-    Set-Service -Name $serviceName -StartupType $newStartType -Status $newStatus
-    $description = "$serviceName now has the StartType of $newStartType and the Status of $newStatus"
+    param( $service, $newStatus, $newStartType )
+    $service | Set-Service -StartupType $newStartType -Status $newStatus
+    $description = $service.DisplayName + " now has the start type of $newStartType and the status of $newStatus"
     Add-Content -Path ./changeLog.txt -Value $description
-}
+    # $rollbackInfo = @()
+    # Get-Service -Name $serviceName | ForEach-Object { $rollbackInfo += , @($_.DisplayName, $_.Name, $_.Status, $_.StartType) }
+    # Add-Content -Path ./rollbackConfig.txt -Value $rollbackInfo
+  }
+  
+  $config = Import-Csv -Path .\config.csv -Delimiter ","
+  $allprocesses = Get-Service
 
-
-$allProcesses = @()
-Get-Service | ForEach-Object { $allProcesses += , @($_.DisplayName, $_.Name, $_.Status, $_.StartType)}  
-# Every service running has an array in the format DisplayName, Name, Status, StartType
-
-$config = @()
-foreach ($line in Get-Content -Path ./config.txt) {  # Creates a similar array for easy comparisons
-    $config += , $line.split(" ")
-}
-
-New-Item -Path . -Name "changeLog.txt" -ItemType File
-foreach ($process in $config) {  # For every service with a config
-    foreach ($currentProcess in $allProcesses) {  # Check with every service on the computer
-        if ($currentProcess[0] -eq $process[0]) {  # If the service is on the computer
-            if ($currentProcess[2] -eq $process[2] -and $currentProcess[3] -eq $process[3]) {  # Check if the config is correct
-                break
-            }
-            else {  # If not, edit it
-                Edit-Service $currentProcess[0] $process[2] $process[3]
-                break
-            }
-        }
+  foreach ($process in $config) {  # For every service with a config
+    $currentProcess = $allprocesses | Where-Object {$_.DisplayName -eq $process.DisplayName}
+    if($currentProcess -and $currentProcess.Status -eq $process.Status -and $currentProcess.StartType -eq $process.StartType) {
+      # Add-Content -Path ./changeLog.txt -Value ($currentProcess.DisplayName  + " was left unchanged")
+    } elseif($currentProcess) {
+    #   Add-Content -Path ./changeLog.txt -Value ($currentProcess.DisplayName + " was changed")
+    #   Write-Host $currentProcess, $process.status #<- change $currentprocess here to access some of the properties you actually want to print.
+      Edit-Service $currentProcess $process.status $process.startType
     }
-}
-
-
-# If a txt for each category is wanted/needed
-
-# $processStartTypes = "Automatic", "Disabled", "Manual", "Stopped", "Running"  # Lists all filter categories
-
-# function Make-List {  # function that returns all processes with a certain state/config
-#     param( $name )
-#     $temp = @()
-#     if ( $name -eq "Automatic" -or $name -eq "Disabled" -or $name -eq "Manual" ) {  # Checks if the status or starttype should be tested
-#         $filter = "StartType"
-#     }
-#     else {
-#         $filter = "Status"
-#     }
-#     Get-Service | 
-#     Where-Object { $_.$filter -eq $name} | 
-#         ForEach-Object { $temp += $_.DisplayName + " {" + $_.Name + "}"}
-#     return $temp  # Actually returns the process list
-# }
-
-# if (Test-Path ./ProcessInformation) {  # If the directory already exists, remove it
-#     Remove-Item -Path ./ProcessInformation -Recurse
-# }
-# New-Item -Path . -Name "ProcessInformation" -ItemType "directory" > $null # Creates the directory and pushes the output to null
-# Write-Host "Created the ProcessInformation directory"
-
-# foreach ( $processType in $processStartTypes ) {  # For every category, create a txt file with all processes in it
-#     $temp += Make-List $processType
-#     $name = $processType + "Processes.txt"  # File name
-#     New-Item -Path ./ProcessInformation -Name $name -ItemType "file" > $null  # Creates specific .txt file
-#     Write-Host "Created" $name
-#     foreach ($line in $temp) {
-#         Add-Content -Path ./ProcessInformation/$name -Value $line
-#     }
-# }
-# Write-Host "`nDone"
+  }
