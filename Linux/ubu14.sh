@@ -365,7 +365,7 @@ function userPolicy(){
 	else
 		echo "password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1" >> /etc/pam.d/common-password
 	fi
-	if [[ $(grep -v '^#' | grep 'pam_pwhistory.so' /etc/pam.d/ommon-password) ]]
+	if [[ $(grep -v '^#' | grep 'pam_pwhistory.so' /etc/pam.d/common-password) ]]
 	then
 		sed -i '/^password * pam_pwhistory.so/ c\password required pam_pwhistory.so remember=24 use_authtok' /etc/login.defs
 	else
