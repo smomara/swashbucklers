@@ -44,12 +44,12 @@ function updates(){
 	echo "Configuring apt..."
 	apt-get install unattended-upgrades -y &> /dev/null
 	dpkg-reconfigure unattended-upgrades
-	echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates main restricted" >> /etc/apt/sources.list
-	echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe" >> /etc/apt/sources.list
-	echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates multiverse" >> /etc/apt/sources.list
-	echo "deb http://security.ubuntu.com/ubuntu/ trusty-security main restricted" >> /etc/apt/sources.list
-	echo "deb http://security.ubuntu.com/ubuntu/ trusty-security universe" >> /etc/apt/sources.list
-	echo "deb http://security.ubuntu.com/ubuntu/ trusty-security multiverse" >> /etc/apt/sources.list
+	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted" >> /etc/apt/sources.list
+	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates universe" >> /etc/apt/sources.list
+	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates multiverse" >> /etc/apt/sources.list
+	echo "deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted" >> /etc/apt/sources.list
+	echo "deb http://security.ubuntu.com/ubuntu/ xenial-security universe" >> /etc/apt/sources.list
+	echo "deb http://security.ubuntu.com/ubuntu/ xenial-security multiverse" >> /etc/apt/sources.list
 	sort /etc/apt/sources.list -u --output=/etc/apt/sources.list
 	sed -i '/^[[:blank:]]*#/d;s/#.*//' /etc/apt/sources.list
 	touch /etc/apt/apt.conf.d/10periodic
