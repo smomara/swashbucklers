@@ -5,7 +5,7 @@ function Get-RandomCharacters($length, $characters) {
     return [String]$characters[$random]
 }
  
-function Scramble-String([string]$inputString){     
+function Edit-String([string]$inputString){     
     $characterArray = $inputString.ToCharArray()   
     $scrambledStringArray = $characterArray | Get-Random -Count $characterArray.Length     
     $outputString = -join $scrambledStringArray
@@ -18,7 +18,7 @@ $password += Get-RandomCharacters -length 2 -characters '1234567890'
 $password += Get-RandomCharacters -length 3 -characters '!"§$%&/()=?}][{@#*+'
 # 14 character password - strong as well
  
-$password = Scramble-String $password # randomizes password string
+$password = Edit-String $password # randomizes password string
 
 New-Item -Path . -Name "Password.txt" -ItemType "file" -Value $password # creates .txt file with password
 
@@ -51,12 +51,12 @@ Disable-LocalUser -Name "Administrator"
 Disable-LocalUser -Name "Guest"
 #disables admin and guest accounts
 $newuser = Read-Host "Do you need to make a new user? (y/n)"
-if ($newuser == y) {
+if ($newuser -eq 'y') {
     $newusername = Read-Host "What is the user's name? (exactly)"
     New-LocalUser -Name $newusername -Password $password -AccountNeverExpires $False -PasswordNeverExpires $False
 }
 $newgroup = Read-Host "Do you need to make a new group? (y/n)"
-if ($newgroup == y) {
+if ($newgroup -eq 'y') {
     $groupname = Read-Host "What is the group name? (exactly)"
     New-LocalGroup -Name $groupname
   [String[]]$groupusers = Read-Host "Which users need to be in the group? (exact names then a space)"
@@ -66,6 +66,6 @@ if ($newgroup == y) {
 }
 Clear-Host
 Write-Host "Users have been audited."
-Write-Host "The password is" $password". It has been written in Password.txt"
+Write-Host "The password is $password. It has been written in Password.txt"
 
 

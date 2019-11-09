@@ -1,0 +1,45 @@
+displayName, name, status, startType
+Bluetooth Audio Gateway Service, BTAGService, Stopped, Disabled
+Bluetooth Support Service, bthserv, Stopped, Disabled
+Computer Browser, Browser, Stopped, Disabled
+Downloaded Maps Manager, MapsBroker, Stopped, Disabled
+Geolocation Service, lfsvc, Stopped, Disabled
+IIS Admin Service, IISADMIN, Stopped, Disabled
+Infrared monitor service, irmon, Stopped, Disabled
+Internet Connection Sharing (ICS), SharedAccess, Stopped, Disabled
+Link-Layer Topology Discovery Mapper, lltdsvc, Stopped, Disabled
+LxssManager, LxssManager, Stopped, Disabled
+Microsoft FTP Service, FTPSVC, Stopped, Disabled
+Microsoft iSCSI Initiator Service, MSiSCSI, Stopped, Disabled
+Microsoft Store Install Service, InstallService, Stopped, Disabled
+OpenSSH SSH Server, sshd, Stopped, Disabled
+Peer Name Resolution Protocol, PNRPsvc, Stopped, Disabled
+Peer Networking Grouping, p2psvc, Stopped, Disabled
+Peer Networking Identity Manager, p2pimsvc, Stopped, Disabled
+PNRP Machine Name Publication Service, PNRPAutoReg, Stopped, Disabled
+Problem Reports and Solutions Control Panel Support, wercplsupport, Stopped, Disabled
+Remote Access Auto Connection Manager, RasAuto, Stopped, Disabled
+Remote Desktop Configuration, SessionEnv, Stopped, Disabled
+Remote Desktop Services, TermService, Stopped, Disabled
+Remote Desktop Services UserMode Port Redirector, UmRdpService, Stopped, Disabled
+Remote Procedure Call (RPC) Locator, RpcLocator, Stopped, Disabled
+Remote Registry, RemoteRegistry, Stopped, Disabled
+Routing and Remote Access, RemoteAccess, Stopped, Disabled
+Server, LanmanServer, Stopped, Disabled
+Simple TCP/IP Services, simptcp, Stopped, Disabled
+SNMP Service, SNMP, Stopped, Disabled
+SSDP Discovery, SSDPSRV, Stopped, Disabled
+UPnP Device Host, upnphost, Stopped, Disabled
+Web Management Service, WMSvc, Stopped, Disabled
+Windows Error Reporting Service, WerSvc, Stopped, Disabled
+Windows Event Collector, Wecsvc, Stopped, Disabled
+Windows Media Player Network Sharing Service, WMPNetworkSvc, Stopped, Disabled
+Windows Mobile Hotspot Service, icssvc, Stopped, Disabled
+Windows Push Notifications System Service, WpnService, Stopped, Disabled
+Windows PushToInstall Service, PushToInstall, Stopped, Disabled
+Windows Remote Management (WS-Management), WinRM, Stopped, Disabled
+World Wide Web Publishing Service, W3SVC, Stopped, Disabled
+Xbox Accessory Management Service, XboxGipSvc, Stopped, Disabled
+Xbox Live Auth Manager, XblAuthManager, Stopped, Disabled
+Xbox Live Game Save, XblGameSave, Stopped, Disabled
+Xbox Live Networking Service, XboxNetApiSvc, Stopped, Disabled

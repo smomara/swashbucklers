@@ -1,0 +1,36 @@
+Bluetooth Audio Gateway Service now has the start type of Disabled and the status of Stopped
+Bluetooth Support Service now has the start type of Disabled and the status of Stopped
+Computer Browser now has the start type of Disabled and the status of Stopped
+Downloaded Maps Manager now has the start type of Disabled and the status of Stopped
+Geolocation Service now has the start type of Disabled and the status of Stopped
+Infrared monitor service now has the start type of Disabled and the status of Stopped
+Internet Connection Sharing (ICS) now has the start type of Disabled and the status of Stopped
+Link-Layer Topology Discovery Mapper now has the start type of Disabled and the status of Stopped
+Microsoft iSCSI Initiator Service now has the start type of Disabled and the status of Stopped
+Microsoft Store Install Service now has the start type of Disabled and the status of Stopped
+Peer Name Resolution Protocol now has the start type of Disabled and the status of Stopped
+Peer Networking Grouping now has the start type of Disabled and the status of Stopped
+Peer Networking Identity Manager now has the start type of Disabled and the status of Stopped
+PNRP Machine Name Publication Service now has the start type of Disabled and the status of Stopped
+Problem Reports and Solutions Control Panel Support now has the start type of Disabled and the status of Stopped
+Remote Access Auto Connection Manager now has the start type of Disabled and the status of Stopped
+Remote Desktop Configuration now has the start type of Disabled and the status of Stopped
+Remote Desktop Services now has the start type of Disabled and the status of Stopped
+Remote Desktop Services UserMode Port Redirector now has the start type of Disabled and the status of Stopped
+Remote Procedure Call (RPC) Locator now has the start type of Disabled and the status of Stopped
+Remote Registry was left unchanged
+Routing and Remote Access was left unchanged
+Server now has the start type of Disabled and the status of Stopped
+SSDP Discovery now has the start type of Disabled and the status of Stopped
+UPnP Device Host now has the start type of Disabled and the status of Stopped
+Windows Error Reporting Service now has the start type of Disabled and the status of Stopped
+Windows Event Collector now has the start type of Disabled and the status of Stopped
+Windows Media Player Network Sharing Service now has the start type of Disabled and the status of Stopped
+Windows Mobile Hotspot Service now has the start type of Disabled and the status of Stopped
+Windows Push Notifications System Service now has the start type of Disabled and the status of Stopped
+Windows PushToInstall Service now has the start type of Disabled and the status of Stopped
+Windows Remote Management (WS-Management) now has the start type of Disabled and the status of Stopped
+Xbox Accessory Management Service now has the start type of Disabled and the status of Stopped
+Xbox Live Auth Manager now has the start type of Disabled and the status of Stopped
+Xbox Live Game Save now has the start type of Disabled and the status of Stopped
+Xbox Live Networking Service now has the start type of Disabled and the status of Stopped

@@ -1,0 +1,7 @@
+OBJECTS.DATA contains the word data. The directory is C:\Windows\System32\wbem\Repository
+DataStore.edb contains the word data. The directory is C:\Windows\SoftwareDistribution\DataStore
+DataStore.jfm contains the word data. The directory is C:\Windows\SoftwareDistribution\DataStore
+_private_data.tar contains the word data. The directory is C:\Users\carte\.MakeMKV
+_private_data.tar contains the word private. The directory is C:\Users\carte\.MakeMKV
+Microsoft.VisualStudio.Debugger.Metadata.ni.dll.aux contains the word data. The directory is C:\Windows\assembly\NativeImages_v4.0.30319_64\Microsoft.V7c9cf9d7#\1e7b8225d211423eb2809267bd96b3e1
+Microsoft.VisualStudio.Debugger.Metadata.ni.dll contains the word data. The directory is C:\Windows\assembly\NativeImages_v4.0.30319_64\Microsoft.V7c9cf9d7#\1e7b8225d211423eb2809267bd96b3e1
