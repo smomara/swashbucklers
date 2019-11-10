@@ -1,0 +1,15 @@
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.csprojAssemblyReference.cache
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\MainWindow.g.cs
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\App.g.cs
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot_MarkupCompile.cache
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot_MarkupCompile.lref
+F:\Visual Studio\CyberPatriot\CyberPatriot\bin\Debug\CyberPatriot.exe.config
+F:\Visual Studio\CyberPatriot\CyberPatriot\bin\Debug\CyberPatriot.exe
+F:\Visual Studio\CyberPatriot\CyberPatriot\bin\Debug\CyberPatriot.pdb
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\MainWindow.baml
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.g.resources
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.Properties.Resources.resources
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.csproj.GenerateResource.cache
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.csproj.CoreCompileInputs.cache
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.exe
+F:\Visual Studio\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.pdb

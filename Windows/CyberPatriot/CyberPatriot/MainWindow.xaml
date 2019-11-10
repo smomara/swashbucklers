@@ -1,0 +1,45 @@
+﻿<Window x:Name="CyberPatriotScriptLauncher" x:Class="CyberPatriot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CyberPatriot"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="background" Background="#FFBBB0B0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="209*"/>
+            <RowDefinition Height="210*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="329*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="startButton" Content="Run Scripts" Margin="225,142.286,0,0" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Background="#FF530C0C" Foreground="White" Grid.Row="1">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <Trigger Property="Button.IsMouseOver" Value="True">
+                            <Setter Property="Button.Background" Value="DarkRed"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBlock x:Name="startDescription" HorizontalAlignment="Left" Margin="195,167.286,0,0" TextWrapping="Wrap" Text="Run Scripts, Get Mad Points" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="84,23,0,0" TextWrapping="Wrap" Text="CyberPatriot Windows Launcher" VerticalAlignment="Top" FontSize="24" FontFamily="Bell MT" Grid.Column="1" Foreground="#FF631A1A" FontWeight="Bold"/>
+        <TextBlock x:Name="feedMyEgo" HorizontalAlignment="Left" Margin="494,158.286,0,0" TextWrapping="Wrap" Text="Carter Costic, Swashbucklers CPXII (2019-2020) " VerticalAlignment="Top" Height="42" Width="154" TextAlignment="Center" Grid.Column="1" Grid.Row="1"/>
+        <CheckBox x:Name="usersAndGroups" Content="Users and Groups configuration&#xD;&#xA;" HorizontalAlignment="Left" Margin="96,118,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="104,70,0,0" TextWrapping="Wrap" Text="Select which of the following scripts you would like to run:" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="sharesAuditing" Content="Shares auditing&#xA;" HorizontalAlignment="Left" Margin="96,154,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <CheckBox x:Name="displayRecentFiles" Content="Display most recent files&#xA;" HorizontalAlignment="Left" Margin="195,118,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="mozillaConfig" Content="Mozilla Firefox configuration&#xA;" HorizontalAlignment="Left" Margin="195,191,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2"/>
+        <CheckBox x:Name="serviceAuditing" Content="Service auditing&#xA;" HorizontalAlignment="Left" Margin="413,118,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="sysInfo" Content="Display system info&#xA;" HorizontalAlignment="Left" Margin="413,154,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="Images\RBRSymbol.png"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="Images\RBRSymbol.png"/>
+        <CheckBox x:Name="rebootOnceDone" Content="Reboot on completion&#xA;" HorizontalAlignment="Left" Margin="195,116,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Height="21"/>
+        <CheckBox x:Name="localPolicies" Content="Configure local policies&#xA;" HorizontalAlignment="Left" Margin="195,154,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Rectangle Grid.Column="1" Fill="#FF4D4D4F" HorizontalAlignment="Left" Height="4" Margin="78,50,0,0" VerticalAlignment="Top" Width="368"/>
+    </Grid>
+</Window>

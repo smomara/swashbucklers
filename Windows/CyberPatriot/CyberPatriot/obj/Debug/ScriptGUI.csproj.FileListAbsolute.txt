@@ -1,0 +1,15 @@
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\bin\Debug\CyberPatriot.exe.config
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\bin\Debug\CyberPatriot.exe
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\bin\Debug\CyberPatriot.pdb
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\ScriptGUI.csprojAssemblyReference.cache
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\MainWindow.g.cs
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\App.g.cs
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot_MarkupCompile.cache
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot_MarkupCompile.lref
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\MainWindow.baml
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.g.resources
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.Properties.Resources.resources
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\ScriptGUI.csproj.GenerateResource.cache
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\ScriptGUI.csproj.CoreCompileInputs.cache
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.exe
+C:\Users\carte\Documents\CyPat\swashbucklers\Windows\CyberPatriot\CyberPatriot\obj\Debug\CyberPatriot.pdb
