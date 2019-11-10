@@ -9,7 +9,8 @@ function Edit-String([string]$inputString){
     $characterArray = $inputString.ToCharArray()   
     $scrambledStringArray = $characterArray | Get-Random -Count $characterArray.Length     
     $outputString = -join $scrambledStringArray
-    return $outputString 
+    $outputString = ConvertTo-SecureString $outputString
+    return $outputString
 }
 
 $password = Get-RandomCharacters -length 6 -characters 'abcdefghiklmnoprstuvwxyz'
@@ -43,7 +44,7 @@ ForEach ($user in $AdminsAllowed) {
 }
 
 ForEach ($user in $UsersAllowed) {
-    Write-Host "Adding $user [User account] to the Administrator group and configuring their settings."
+    Write-Host "Removing $user [User account] from the Administrator group and configuring their settings."
     Add-LocalGroupMember -Group "User" -Member $user
     Remove-LocalGroupMember -Group "Administrators" -Member $user  # Removes user from the Administrator group
     Set-LocalUser -Name $user -Password $password -UserMayChangePassword $True -AccountNeverExpires $False -PasswordNeverExpires $False -UserMayChangePassword $True # sets password, account can expire, user can change password
@@ -61,8 +62,10 @@ Disable-LocalUser -Name "Guest"
 $newuser = 'y'
 while ($newuser -eq 'y') {
     $newuser = Read-Host "Do you need to make a new user? (y/n)"
-    $newusername = Read-Host "What is the user's name? (exactly)"
-    New-LocalUser -Name $newusername -Password $password -AccountNeverExpires $False -PasswordNeverExpires $False
+    if ($newuser -eq 'y') {
+        $newusername = Read-Host "What is the user's name? (exactly)"
+        New-LocalUser -Name $newusername -Password $password -AccountNeverExpires $False -PasswordNeverExpires $False
+    }
 }
 
 $newgroup = 'y'

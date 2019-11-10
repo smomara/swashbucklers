@@ -14,37 +14,37 @@ $namedNodes | ForEach-Object {
 # Once the button is clicked, the scripts are ran one after another if checked
 $wpf.startButton.add_Click({
     if ($wpf.usersAndGroups.isChecked) {
-        $ScriptToRun = $PSCommandPath + "\usersAndGroups.ps1"
+        $ScriptToRun = ".\usersAndGroups.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.usersAndGroups.isChecked = $false
     }
     if ($wpf.sharesAuditing.isChecked) {
-        $ScriptToRun = $PSScriptRoot + "\shares.ps1"
+        $ScriptToRun = ".\shares.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.sharesAuditing.isChecked = $false
     }
     if ($wpf.displayRecentFiles.isChecked) {
-        $ScriptToRun = $PSScriptRoot + "\mostRecent.ps1"
+        $ScriptToRun = ".\mostRecent.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.displayRecentFiles.isChecked = $false
     }
     if ($wpf.localPolicies.isChecked) {
-        $ScriptToRun = $PSScriptRoot + "\localPolicies.ps1"
+        $ScriptToRun = ".\localPolicies.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.localPolicies.isChecked = $false
     }
     if ($wpf.mozillaConfig.isChecked) {
-        $ScriptToRun = $PSScriptRoot + "\mozillaAutoConfig.ps1"
+        $ScriptToRun = ".\mozillaAutoConfig.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.mozillaConfig.isChecked = $false
     }
     if ($wpf.serviceAuditing.isChecked) {
-        $ScriptToRun = $PSScriptRoot + "\services.ps1"
+        $ScriptToRun = ".\services.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.serviceAuditing.isChecked = $false
     }
     if ($wpf.sysInfo.isChecked) {
-        $ScriptToRun = $PSScriptRoot + "\sysInfo.ps1"
+        $ScriptToRun = ".\sysInfo.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.sysInfo.isChecked = $false
     }
