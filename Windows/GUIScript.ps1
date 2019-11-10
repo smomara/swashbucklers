@@ -14,7 +14,7 @@ $namedNodes | ForEach-Object {
 # Once the button is clicked, the scripts are ran one after another if checked
 $wpf.startButton.add_Click({
     if ($wpf.usersAndGroups.isChecked) {
-        $ScriptToRun = $PSScriptRoot + "\usersAndGroups.ps1"
+        $ScriptToRun = $PSCommandPath + "\usersAndGroups.ps1"
         Invoke-Expression "cmd /c start powershell -NoExit -Command '& $ScriptToRun'"
         $wpf.usersAndGroups.isChecked = $false
     }
