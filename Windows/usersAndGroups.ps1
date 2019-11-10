@@ -12,57 +12,72 @@ function Edit-String([string]$inputString){
     return $outputString 
 }
 
-$password = Get-RandomCharacters -length 5 -characters 'abcdefghiklmnoprstuvwxyz'
+$password = Get-RandomCharacters -length 6 -characters 'abcdefghiklmnoprstuvwxyz'
 $password += Get-RandomCharacters -length 4 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ'
-$password += Get-RandomCharacters -length 2 -characters '1234567890'
+$password += Get-RandomCharacters -length 3 -characters '1234567890'
 $password += Get-RandomCharacters -length 3 -characters '!"§$%&/()=?}][{@#*+'
-# 14 character password - strong as well
+# 16 character password - strong as well
  
 $password = Edit-String $password # randomizes password string
 
-New-Item -Path . -Name "Password.txt" -ItemType "file" -Value $password # creates .txt file with password
+New-Item -Path .\OutputInput -Name "swashbucklersPassword.txt" -ItemType File -Value $password > $null # creates .txt file with password
 
-Clear-Host
+Write-Host "Make sure goodUsers.txt has all of the users with all of the administrators first! (separated by lines)"
+New-Item -Path .\OutputInput -Name "goodUsers.txt" -ItemType File > $null # creates file for good users to be inputted
+Read-Host "Enter a character to continue.."
 
 $UserAccounts = Get-LocalUser
-Write-Host "Make sure GoodUsers.txt has all of the users with all of the administrators first! (separated by lines)"
-$mainuser = Read-Host "What is the main user's name? (exactly)"
-$adminnumber = Read-Host "How many administrator accounts are there?"
-[String[]]$AdminsAllowed = (Get-Content "C:\Users\$mainuser\Desktop\CPResources\GoodUsers.txt" | Select-Object -first $adminnumber)
-[String[]]$UsersAllowed = (Get-Content "C:\Users\$mainuser\Desktop\CPResources\GoodUsers.txt" | Select-Object -skip $adminnumber)
+[int]$adminnumber = Read-Host "How many administrator accounts are there supposed to be?"
+[String[]]$AdminsAllowed = (Get-Content ".\OutputInput\goodUsers.txt" | Select-Object -first $adminnumber)
+[String[]]$UsersAllowed = (Get-Content ".\OutputInput\goodUsers.txt" | Select-Object -skip $adminnumber)
 [String[]]$AllowedAccounts = $AdminsAllowed + $UsersAllowed
-$BadUsers = Compare-Object -ReferenceObject $UserAccounts -DifferenceObject $AllowedAccounts -PassThru
+$badUsers = @()
+Compare-Object -ReferenceObject $UserAccounts -DifferenceObject $AllowedAccounts -PassThru | Where-Object { $_.SideIndicator -eq '=>' } | ForEach-Object  { $badUsers += $_.InputObject }
+
+
 ForEach ($user in $AdminsAllowed) {
+    Write-Host "Adding $user [Admin account] to the Administrator group and configuring their settings."
     Add-LocalGroupMember -Group "Administrators" -Member $user
     Set-LocalUser -Name $user -Password $password -UserMayChangePassword $True -AccountNeverExpires $False -UserMayChangePassword $True # sets password, account can expire, user can change password
     Enable-LocalUser -Name $user
-    Unlock-ADAccount -Identity $user
 }
+
 ForEach ($user in $UsersAllowed) {
-    Add-LocalGroupMember -Group "Administrators" -Member $user
+    Write-Host "Adding $user [User account] to the Administrator group and configuring their settings."
+    Add-LocalGroupMember -Group "User" -Member $user
+    Remove-LocalGroupMember -Group "Administrators" -Member $user  # Removes user from the Administrator group
     Set-LocalUser -Name $user -Password $password -UserMayChangePassword $True -AccountNeverExpires $False -PasswordNeverExpires $False -UserMayChangePassword $True # sets password, account can expire, user can change password
     Enable-LocalUser -Name $user
-    Unlock-ADAccount -Identity $user
 }
-ForEach ($user in $BadUsers) {
+ForEach ($user in $badUsers) {
+    Write-Host "Disabling $user [Bad user]."
     Disable-LocalUser -Name $user
 }
+Write-Host "Disabling the Administrator and Guest account."
 Disable-LocalUser -Name "Administrator"
 Disable-LocalUser -Name "Guest"
-#disables admin and guest accounts
-$newuser = Read-Host "Do you need to make a new user? (y/n)"
-if ($newuser -eq 'y') {
+# Disables admin and guest accounts
+
+$newuser = 'y'
+while ($newuser -eq 'y') {
+    $newuser = Read-Host "Do you need to make a new user? (y/n)"
     $newusername = Read-Host "What is the user's name? (exactly)"
     New-LocalUser -Name $newusername -Password $password -AccountNeverExpires $False -PasswordNeverExpires $False
 }
-$newgroup = Read-Host "Do you need to make a new group? (y/n)"
-if ($newgroup -eq 'y') {
-    $groupname = Read-Host "What is the group name? (exactly)"
-    New-LocalGroup -Name $groupname
-  [String[]]$groupusers = Read-Host "Which users need to be in the group? (exact names then a space)"
-  ForEach ($user in $groupusers) {
-      Add-LocalGroupMember -Member $user -Group $groupname
-  }
+
+$newgroup = 'y'
+while ($newgroup -eq 'y') {
+    $newgroup = Read-Host "Do you need to make a new group? (y/n)"
+    $groupName = Read-Host "What is the group name? (exactly)"
+    New-LocalGroup -Name $groupName
+    $addUser = 'y'
+    while ($addUser -eq 'y') {
+        $addUser = Read-Host "Do you want to add a user to the group? (y/n)"
+        if ($addUser -eq 'y') {
+            $user = Read-Host "What is the name of the user you want to add? (exactly)"
+            Add-LocalGroupMember -Group $groupName -Member $user
+        }
+    }
 }
 Clear-Host
 Write-Host "Users have been audited."
