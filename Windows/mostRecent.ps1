@@ -1,3 +1,9 @@
+param(
+    [Parameter()]
+    [string]$OldPath
+)
+Push-Location $OldPath
+
 # Prompts the user for the number of files they want outputted at the end
 $numberOfFiles = Read-Host -Prompt "How many files do you want outputted?"
 

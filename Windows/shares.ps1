@@ -1,3 +1,9 @@
+param(
+        [Parameter()]
+        [string]$OldPath
+    )
+Push-Location $OldPath
+
 $allowedShares = "ADMIN$", "C$", "IPC$"  # default "good" shares
 
 $new = 'y'

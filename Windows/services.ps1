@@ -1,3 +1,8 @@
+param(
+        [Parameter()]
+        [string]$OldPath
+    )
+Push-Location $OldPath
 function Edit-Service {
     param( $service, $newStatus, $newStartType )
     $service | Select-Object -Property DisplayName, Name, Status, StartType | Export-Csv -Append -Path ".\OutputInput\rollbackConfig.csv" -NoTypeInformation

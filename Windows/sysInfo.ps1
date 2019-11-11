@@ -3,12 +3,12 @@ param(
         [string]$OldPath
     )
 Push-Location $OldPath
+
 # Creates main output file
 if (Test-Path .\OutputInput\sysInfoOutput.txt) {
     Remove-item .\OutputInput\sysInfoOutput.txt
 }
 New-Item -Path .\OutputInput -ItemType File -Name "sysInfoOutput.txt" > $null
-Write-Host (Get-Location)
 
 $sysInfo = $true
 $firewallStatus = $true

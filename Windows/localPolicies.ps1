@@ -1,3 +1,9 @@
+param(
+        [Parameter()]
+        [string]$OldPath
+    )
+Push-Location $OldPath
+
 Write-Host "Copying LGPO"
 Copy-Item -Path .\Win10GPOTemplates\LGPO -Destination C:\Windows\System32
 

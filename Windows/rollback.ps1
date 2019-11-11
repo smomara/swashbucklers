@@ -1,4 +1,10 @@
 # Script to rollback any service configurations that went awry
+param(
+        [Parameter()]
+        [string]$OldPath
+    )
+Push-Location $OldPath
+
 function Edit-Service {
     param( $service, $newStatus, $newStartType )
     $service | Set-Service -StartupType $newStartType -Status $newStatus

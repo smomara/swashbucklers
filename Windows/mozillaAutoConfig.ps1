@@ -1,3 +1,9 @@
+param(
+        [Parameter()]
+        [string]$OldPath
+    )
+Push-Location $OldPath
+
 $continue = Read-Host "Is Mozilla Firefox installed and updated? (y/n)"
 if ($continue -eq "y") {
     Write-Host "Copying over the configuration files"

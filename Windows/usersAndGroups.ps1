@@ -1,3 +1,9 @@
+param(
+        [Parameter()]
+        [string]$OldPath
+    )
+Push-Location $OldPath
+
 # Makes random password and outputs password in Password.txt
 function Get-RandomCharacters($length, $characters) {
     $random = 1..$length | ForEach-Object { Get-Random -Maximum $characters.length }
