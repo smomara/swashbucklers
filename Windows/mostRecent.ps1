@@ -43,3 +43,4 @@ foreach ($file in $mostRecent) {
     }
 }
 Write-Host "Analysis Complete. Check recentAnalysis.txt and recentList.txt for the outputs."
+Read-Host "Press any character to exit the script"

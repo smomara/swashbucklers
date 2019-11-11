@@ -22,12 +22,13 @@ $extraShares = @()
 Compare-Object -ReferenceObject $allowedShares -DifferenceObject $shares | Where-Object { $_.SideIndicator -eq '=>' } | ForEach-Object  { $extraShares += $_.InputObject }
 
 Clear-Host
-Write-Host "`nRemoving the following shares: $extraShares`n-----------------`n"
+Write-Host "`nRemoving the following shares: $extraShares`n-----------------`n`n"
 
 #  Deletes the SMB shares
 foreach ($share in $extraShares) {
-    # Remove-SMbShare -Name $share
+    # Remove-SmbShare -Name $share -Force
     Write-Host "Removed $share`n"
 }
 
-Write-Host "-----------------`nScript complete.`n`n"
+Write-Host "`n-----------------`n`nScript complete.`n`n"
+Read-Host "Press any character to exit the script"

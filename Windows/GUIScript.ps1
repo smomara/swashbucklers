@@ -21,43 +21,43 @@ $wpf.startButton.add_Click({
     if ($wpf.usersAndGroups.isChecked) {
         $ScriptToRun = "\usersAndGroups.ps1"
         $path = [String](Get-Location)
-        Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "-File $path\$ScriptToRun $path"
+        Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
         $wpf.usersAndGroups.isChecked = $false
     }
     if ($wpf.sharesAuditing.isChecked) {
         $ScriptToRun = "\shares.ps1"
         $path = [String](Get-Location)
-        Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "-File $path\$ScriptToRun $path"
+        Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
         $wpf.sharesAuditing.isChecked = $false
     }
     if ($wpf.displayRecentFiles.isChecked) {
         $ScriptToRun = "\mostRecent.ps1"
         $path = [String](Get-Location)
-        Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "-File $path\$ScriptToRun $path"
+        Start-Process -FilePath "powershell" -Verb RunAs -Wait  -ArgumentList "-File $path\$ScriptToRun $path"
         $wpf.displayRecentFiles.isChecked = $false
     }
     if ($wpf.localPolicies.isChecked) {
         $ScriptToRun = "\localPolicies.ps1"
         $path = [String](Get-Location)
-        Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "-File $path\$ScriptToRun $path"
+        Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
         $wpf.localPolicies.isChecked = $false
     }
     if ($wpf.mozillaConfig.isChecked) {
         $ScriptToRun = "\mozillaAutoConfig.ps1"
         $path = [String](Get-Location)
-        Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "-File $path\$ScriptToRun $path"
+        Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
         $wpf.mozillaConfig.isChecked = $false
     }
     if ($wpf.serviceAuditing.isChecked) {
         $ScriptToRun = "\services.ps1"
         $path = [String](Get-Location)
-        Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "-File $path\$ScriptToRun $path"
+        Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
         $wpf.serviceAuditing.isChecked = $false
     }
     if ($wpf.sysInfo.isChecked) {
         $ScriptToRun = "\sysInfo.ps1"
         $path = [String](Get-Location)
-        Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "-File $path\$ScriptToRun $path"
+        Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
         $wpf.sysInfo.isChecked = $false
     }
     if ($wpf.rebootOnceDone.isChecked) {

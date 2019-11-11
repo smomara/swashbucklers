@@ -6,7 +6,12 @@ Push-Location $OldPath
 function Edit-Service {
     param( $service, $newStatus, $newStartType )
     $service | Select-Object -Property DisplayName, Name, Status, StartType | Export-Csv -Append -Path ".\OutputInput\rollbackConfig.csv" -NoTypeInformation
-    $service | Set-Service -StartupType $newStartType -Status $newStatus
+    if ($newStatus -eq "Stopped") {
+      $service | Stop-Service -Force
+      $service | Set-Service -StartupType $newStartType
+    } else {
+      $service | Set-Service -StartupType $newStartType -Status $newStatus
+    }
     $description = $service.DisplayName + " now has the start type of $newStartType and the status of $newStatus"
     Add-Content -Path ".\OutputInput\changeLog.txt" -Value $description
   }
@@ -38,3 +43,4 @@ Write-Host "Files created. Now configuring the services."
   }
 
 Write-Host "All services are configured. Check changeLog.txt for any changes. If you want to undo the changes, run rollback.ps1."
+Read-Host "Press enter to exit the script"

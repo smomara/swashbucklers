@@ -62,7 +62,7 @@ if ((Read-Host "Do you want to look at system credentials? (y/n)") -eq "n") {
 
 
 Clear-Host
-Write-Host "Starting..."
+Write-Host "Starting...`r`n"
 $output = ""
 
 
@@ -232,3 +232,4 @@ if ($credentials) {
 
 Write-Host "Script is complete. Check \OutputInput\sysInfoOutput.txt for some mad insight."
 Add-Content -Path .\OutputInput\sysInfoOutput.txt -Value $output
+Read-Host "Press enter to exit the script"
