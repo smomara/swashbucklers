@@ -33,7 +33,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="104,70,0,0" TextWrapping="Wrap" Text="Select which of the following scripts you would like to run:" VerticalAlignment="Top" Grid.Column="1"/>
         <CheckBox x:Name="sharesAuditing" Content="Shares auditing&#xA;" HorizontalAlignment="Left" Margin="96,154,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <CheckBox x:Name="displayRecentFiles" Content="Display most recent files&#xA;" HorizontalAlignment="Left" Margin="195,118,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <CheckBox x:Name="mozillaConfig" Content="Mozilla Firefox configuration&#xA;" HorizontalAlignment="Left" Margin="195,191,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2"/>
+        <CheckBox x:Name="mozillaConfig" Content="Mozilla Firefox configuration&#xA;" HorizontalAlignment="Left" Margin="195,191,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2" IsEnabled="False"/>
         <CheckBox x:Name="serviceAuditing" Content="Service auditing&#xA;" HorizontalAlignment="Left" Margin="413,118,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <CheckBox x:Name="sysInfo" Content="Display system info&#xA;" HorizontalAlignment="Left" Margin="413,154,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="Images\RBRSymbol.png"/>
