@@ -478,6 +478,14 @@ function network(){
 	echo ""
 
 	# configures sysctl
+	echo "Check sysctl directory for malicious or unnecessary configurations..."
+	sleep 1
+	echo ""
+	echo "/etc/sysctl.d/"
+	echo ""
+	find /etc/sudoers.d | paste -s -d ',' | cut -d, -f2-
+	echo ""
+	read -n 1 -s -r -p "Press any key to continue"
 	echo ""
 	echo "Configuring sysctl..."
 
@@ -561,6 +569,12 @@ function network(){
 			sed -i '/net.ipv4.conf.default.rp_filter/ c\net.ipv4.conf.default.rp_filter = 1' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.default.rp_filter = 1" >> /etc/sysctl.conf
+		fi
+		if [[ $(grep 'kernel.randomize_va_space' /etc/sysctl.conf) ]]
+		then
+			sed -i '/kernel.randomize_va_space/ c\kernel.randomize_va_space = 2' /etc/sysctl.conf
+		else
+			echo "kernel.randomize_va_space = 2" >> /etc/sysctl.conf
 		fi
 	
 	# applies changes to sysctl
