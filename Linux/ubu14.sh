@@ -113,10 +113,10 @@ function updates(){
 	# install updates
 	echo ""
 	echo "Installing updates (grab some snacks, this is going to take a while)..."
-	apt-get update &> /dev/null
-	apt-get dist-upgrade -y &> /dev/null
-	apt-get update &> /dev/null
-	apt-get autoremove -y &> /dev/null
+	apt-get update 
+	apt-get dist-upgrade -y 
+	apt-get update 
+	apt-get autoremove -y 
 
 	echo ""
 	echo "Exiting updates..."
