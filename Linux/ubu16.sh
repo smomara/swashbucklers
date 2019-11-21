@@ -32,9 +32,8 @@ function menu(){
 	echo "3) User Policy"
 	echo "4) Network"
 	echo "5) Scans"
-	echo "6) Services"
-	echo "7) Exit"
-	echo "Choose an option: 1-7"
+	echo "6) Exit"
+	echo "Choose an option: 1-6"
 }
 
 # configures apt and installs updates
@@ -50,38 +49,38 @@ function updates(){
 	touch /etc/apt/apt.conf.d/10periodic
 	if [[ $(grep 'APT::Periodic::Update-Package-Lists' /etc/apt/apt.conf.d/10periodic) ]]
 	then
-		sed -i '/APT::Periodic::Update-Package-Lists/ c\APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/10periodic
+		sed -i 's/APT::Periodic::Update-Package-Lists/APT::Periodic::Update-Package-Lists "1";/g' /etc/apt/apt.conf.d/10periodic
 	else
 		echo -e "APT::Periodic::Update-Package-Lists \"1\";" >> /etc/apt/apt.conf.d/10periodic
 	fi
 	if [[ $(grep 'APT::Periodic::Download-Upgradeable-Packages' /etc/apt/apt.conf.d/10periodic) ]]
 	then
-		sed -i '/APT::Periodic::Download-Upgradeable-Packages/ c\APT::Periodic::Download-Upgradeable-Packages "1";' /etc/apt/apt.conf.d/10periodic	
+		sed -i 's/APT::Periodic::Download-Upgradeable-Packages/APT::Periodic::Download-Upgradeable-Packages "1";/g' /etc/apt/apt.conf.d/10periodic	
 	else
 		echo -e "APT::Periodic::Download-Upgradeable-Packages \"1\";" >> /etc/apt/apt.conf.d/10periodic
 	fi
 	if [[ $(grep 'APT::Periodic::Unattended-Upgrade' /etc/apt/apt.conf.d/10periodic) ]]
 	then
-		sed -i '/APT::Periodic::Unattended-Upgrade/ c\APT::Periodic::Unattended-Upgrade "1";' /etc/apt/apt.conf.d/10periodic
+		sed -i 's/APT::Periodic::Unattended-Upgrade/APT::Periodic::Unattended-Upgrade "1";/g' /etc/apt/apt.conf.d/10periodic
 	else
 		echo -e "APT::Periodic::Unattended-Upgrade \"1\";" >> /etc/apt/apt.conf.d/10periodic
 	fi
 	touch /etc/apt/apt.conf.d/20auto-upgrades
 	if [[ $(grep 'APT::Periodic::Update-Package-Lists' /etc/apt/apt.conf.d/20auto-upgrades) ]]
 	then
-		sed -i '/APT::Periodic::Update-Package-Lists/ c\APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/10periodic
+		sed -i 's/APT::Periodic::Update-Package-Lists/APT::Periodic::Update-Package-Lists "1";/g' /etc/apt/apt.conf.d/10periodic
 	else
 		echo -e "APT::Periodic::Update-Package-Lists \"1\";" >> /etc/apt/apt.conf.d/20auto-upgrades
 	fi
 	if [[ $(grep 'APT::Periodic::Download-Upgradeable-Packages' /etc/apt/apt.conf.d/20-auto-upgrades) ]]
 	then
-		sed -i '/APT::Periodic::Download-Upgradeable-Packages/ c\APT::Periodic::Download-Upgradeable-Packages "1";' /etc/apt/apt.conf.d/20-auto-upgrades
+		sed -i 's/APT::Periodic::Download-Upgradeable-Packages/APT::Periodic::Download-Upgradeable-Packages "1";/g' /etc/apt/apt.conf.d/20-auto-upgrades
 	else
 		echo -e "APT::Periodic::Download-Upgradeable-Packages \"1\";" >> /etc/apt/apt.conf.d/20auto-upgrades
 	fi
 	if [[ $(grep 'APT::Periodic::Unattended-Upgrade' /etc/apt/apt.conf.d/20auto-upgrades) ]]
 	then
-		sed -i '/APT::Periodic::Unattended-Upgrade/ c\APT::Periodic::Unattended-Upgrade "1";' /etc/apt/apt.conf.d/20-auto-upgrades
+		sed -i 's/APT::Periodic::Unattended-Upgrade/APT::Periodic::Unattended-Upgrade "1";/g' /etc/apt/apt.conf.d/20-auto-upgrades
 	else
 		echo -e "APT::Periodic::Unattended-Upgrade \"1\";" >> /etc/apt/apt.conf.d/20auto-upgrades
 	fi
@@ -239,7 +238,7 @@ function usersAndGroups(){
 	echo "Disabling guest user..."
 	if [[ $(grep 'allow-guest' /etc/lightdm/lightdm.conf) ]]
 	then
-		sed -i '/allow-guest/ c\allow-guest=false' /etc/lightdm/lightdm.conf
+		sed -i 's/allow-guest/allow-guest=false/g' /etc/lightdm/lightdm.conf
 	else
 		echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 	fi
@@ -247,7 +246,7 @@ function usersAndGroups(){
 	# disables autologin
 	echo ""
 	echo "Disabling autologin..."
-	sed -i '/autologin-user/d' /etc/lightdm/lightdm.conf
+	sed -i 's/autologin-user//g' /etc/lightdm/lightdm.conf
 	
 	# ensures root in g 0
 	echo ""
@@ -328,21 +327,21 @@ function userPolicy(){
 	# password aging
 	echo ""
 	echo "Enabling password aging..."
-	sed -i '/^PASS_MAX_DAYS/ c\PASS_MAX_DAYS	90' /etc/login.defs
-	sed -i '/^PASS_MIN_DAYS/ c\PASS_MIN_DAYS	7' /etc/login.defs
-	sed -i '/^PASS_WARN_AGE/ c\PASS_WARN_AGE	7' /etc/login.defs
+	sed -i 's/^PASS_MAX_DAYS/PASS_MAX_DAYS 90/g' /etc/login.defs
+	sed -i 's/^PASS_MIN_DAYS/PASS_MIN_DAYS 7/g' /etc/login.defs
+	sed -i 's/^PASS_WARN_AGE/PASS_WARN_AGE 7/g' /etc/login.defs
 	
 	# changes default perms to 027
 	echo ""
 	echo "Changing umask..."
-	sed -i '/^UMASK/ c\UMASK 027' /etc/login.defs
+	sed -i 's/^UMASK/UMASK 027/g' /etc/login.defs
 
 	# enables encryption
 	echo ""
 	echo "Enabling encryption..."
 	if [[ $(grep '^ENCRYPT_METHOD' /etc/login.defs) ]]
 	then
-		sed -i '/^ENCRYPT_METHOD/ c\ENCRYPT_METHOD SHA512' /etc/login.defs
+		sed -i 's/^ENCRYPT_METHOD/ENCRYPT_METHOD SHA512/g' /etc/login.defs
 	else
 		echo "ENCRYPT_METHOD SHA512" >> /etc/login.defs 
 	fi
@@ -356,21 +355,21 @@ function userPolicy(){
 	# configures common-password
 	echo ""
 	echo "Enforcing password complexity and history..."
-	if [[ $(grep -v '^#' | grep 'pam_cracklib.so' /etc/pam.d/common-password) ]]
+	if [[ $(grep -v '^#' /etc/pam.d/common-password | grep 'pam_cracklib.so' /etc/pam.d/common-password) ]]
 	then
-		sed -i '/^password * pam_cracklib.so/ c\password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1' /etc/login.defs
+		sed -i 's/^password.*pam_cracklib.so/password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1/g' /etc/pam.d/common-password
 	else
 		echo "password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1" >> /etc/pam.d/common-password
 	fi
-	if [[ $(grep -v '^#' | grep 'pam_pwhistory.so' /etc/pam.d/common-password) ]]
+	if [[ $(grep -v '^#' /etc/pam.d/common-password | grep 'pam_pwhistory.so') ]]
 	then
-		sed -i '/^password * pam_pwhistory.so/ c\password required pam_pwhistory.so remember=24 use_authtok' /etc/login.defs
+		sed -i 's/^password.*pam_pwhistory.so/password required pam_pwhistory.so remember=24 use_authtok/g' /etc/pam.d/common-password
 	else
 		echo "password required pam_pwhistory.so remember=24 use_authtok" >> /etc/pam.d/common-password
 	fi
-	if [[ $(grep -v '^#' | grep 'pam_unix.so' /etc/pam.d/common-password) ]]
+	if [[ $(grep -v '^#' /etc/pam.d/common-password | grep 'pam_unix.so') ]]
 	then
-		sed -i '/^password * pam_unix.so/ c\password [success=1 default=ignore] pam_unix.so sha512' /etc/login.defs
+		sed -i 's/^password.*pam_unix.so/password [success=1 default=ignore] pam_unix.so sha512/g' /etc/pam.d/common-password
 	else
 		echo "password [success=1 default=ignore] pam_unix.so sha512" >> /etc/pam.d/common-password
 	fi
@@ -432,9 +431,9 @@ function network(){
 	echo ""
 	echo "Displaying open ports..."
 	echo ""
-	echo "netstat -tulpen"
+	echo "lsof -i"
 	echo ""
-	netstat -tulpen
+	lsof -i
 	echo ""
 	read -n 1 -s -r -p "Press any key to continue"
 	echo ""
@@ -487,89 +486,89 @@ function network(){
 	echo "Configuring sysctl..."
 
 		# disabling ipv6
-		if [[ $(grep 'net.ipv6.conf.all.disable_ipv6' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv6.conf.all.disable_ipv6' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv6.conf.all.disable_ipv6/ c\net.ipv6.conf.all.disable_1pv6 = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv6.conf.all.disable_ipv6/net.ipv6.conf.all.disable_1pv6 = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf 
 		fi
-		if [[ $(grep 'net.ipv6.conf.default.disable_ipv6' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv6.conf.default.disable_ipv6' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv6.conf.default.disable_ipv6/ c\net.ipv6.conf.default.disable_1pv6 = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv6.conf.default.disable_ipv6/net.ipv6.conf.default.disable_1pv6 = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv6.conf.adefault.disable_ipv6 = 1" >> /etc/sysctl.conf 
 		fi
-		if [[ $(grep 'net.ipv6.conf.lo.disable_ipv6' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv6.conf.lo.disable_ipv6' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv6.conf.lo.disable_ipv6/ c\net.ipv6.conf.lo.disable_1pv6 = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv6.conf.lo.disable_ipv6/net.ipv6.conf.lo.disable_1pv6 = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf 
 		fi
 
 		# configuring ipv4
-		if [[ $(grep 'net.ipv4.ip_forward' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.ip_forward' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.ip_forward/ c\net.ipv4.ip_forward = 0' /etc/sysctl.conf
+			sed -i 's/net.ipv4.ip_forward/net.ipv4.ip_forward = 0/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.ip_forward = 0" >> /etc/sysctl.conf 
 		fi
-		if [[ $(grep 'net.ipv4.conf.default.accept_source_route' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.conf.default.accept_source_route' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.conf.default.accept_source_route/ c\net.ipv4.conf.default.accept_source_route = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv4.conf.default.accept_source_route/net.ipv4.conf.default.accept_source_route = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.default.accept_source_route = 0" >> /etc/sysctl.conf 
 		fi
-		if [[ $(grep 'net.ipv4.tcp_syncookies' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.tcp_syncookies' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.tcp_syncookies/ c\net.ipv4.tcp_syncookies = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv4.tcp_syncookies/net.ipv4.tcp_syncookies = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.tcp_syncookies = 1" >> /etc/sysctl.conf 
 		fi
-		if [[ $(grep 'net.ipv4.conf.all.send_redirects' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.conf.all.send_redirects' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.conf.all.send_redirects/ c\net.ipv4.conf.all.send_redirects = 0' /etc/sysctl.conf
+			sed -i 's/net.ipv4.conf.all.send_redirects/net.ipv4.conf.all.send_redirects = 0/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.all.send_redirects = 0" >> /etc/sysctl.conf 
 		fi
-		if [[ $(grep 'net.ipv4.conf.default.send_redirects' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.conf.default.send_redirects' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.conf.default.send_redirects/ c\net.ipv4.conf.default.send_redirects' /etc/sysctl.conf
+			sed -i 's/net.ipv4.conf.default.send_redirects/net.ipv4.conf.default.send_redirects/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.default.send_redirects" >> /etc/sysctl.conf 
 		fi
-		if [[ $(grep 'net.ipv4.conf.all.log_martians' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.conf.all.log_martians' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.conf.all.log_martians/ c\net.ipv4.conf.all.log_martians = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv4.conf.all.log_martians/net.ipv4.conf.all.log_martians = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.all.log_martians = 1" >> /etc/sysctl.conf
 		fi
-		if [[ $(grep 'net.ipv4.conf.default.secure_redirects' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.conf.default.secure_redirects' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.conf.default.secure_redirects/ c\net.ipv4.conf.default.secure_redirects = 0' /etc/sysctl.conf
+			sed -i 's/net.ipv4.conf.default.secure_redirects/net.ipv4.conf.default.secure_redirects = 0/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.default.secure_redirects = 0" >> /etc/sysctl.conf
 		fi
-		if [[ $(grep 'net.ipv4.icmp_echo_ignore_broadcasts' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.icmp_echo_ignore_broadcasts' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.icmp_echo_ignore_broadcasts/ c\net.ipv4.icmp_echo_ignore_broadcasts = 0' /etc/sysctl.conf
+			sed -i 's/net.ipv4.icmp_echo_ignore_broadcasts/net.ipv4.icmp_echo_ignore_broadcasts = 0/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.icmp_echo_ignore_broadcasts = 1" >> /etc/sysctl.conf
 		fi
-		if [[ $(grep 'net.ipv4.conf.all.rp_filter' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.conf.all.rp_filter' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.conf.all.rp_filter/ c\net.ipv4.conf.all.rp_filter = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv4.conf.all.rp_filter/net.ipv4.conf.all.rp_filter = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.all.rp_filter = 1" >> /etc/sysctl.conf
 		fi
-		if [[ $(grep 'net.ipv4.conf.default.rp_filter' /etc/sysctl.conf) ]]
+		if [[ $(grep '^net.ipv4.conf.default.rp_filter' /etc/sysctl.conf) ]]
 		then
-			sed -i '/net.ipv4.conf.default.rp_filter/ c\net.ipv4.conf.default.rp_filter = 1' /etc/sysctl.conf
+			sed -i 's/net.ipv4.conf.default.rp_filter/net.ipv4.conf.default.rp_filter = 1/g' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.default.rp_filter = 1" >> /etc/sysctl.conf
 		fi
 		if [[ $(grep 'kernel.randomize_va_space' /etc/sysctl.conf) ]]
 		then
-			sed -i '/kernel.randomize_va_space/ c\kernel.randomize_va_space = 2' /etc/sysctl.conf
+			sed -i 's/kernel.randomize_va_space/kernel.randomize_va_space = 2/g' /etc/sysctl.conf
 		else
 			echo "kernel.randomize_va_space = 2" >> /etc/sysctl.conf
 		fi
@@ -588,37 +587,11 @@ function scans(){
 	# install and run lynis
 	echo ""
 	echo "Installing lynis..."
-	apt-get install lynis -y &> /dev/null
+	apt-get install lynis -y
 	echo ""
 	echo "Executing a lynis scan..."
 	echo ""	
-	lynis -c
-	echo ""
-	read -n 1 -s -r -p "Press any key to continue"
-	echo ""
-
-	# install and run rkhunter
-	echo ""
-	echo "Installing rkhunter..."
-	apt-get install rkhunter -y &> /dev/null
-	echo ""
-	echo "Executing a rkhunter scan..."
-	echo ""
-	rkhunter --propupd
-	echo ""
-	rkhunter --checkall
-	echo ""
-	read -n 1 -s -r -p "Press any key to continue"
-	echo ""
-
-	# install run chkrootkit
-	echo ""
-	echo "Installing chkrootkit..."
-	apt-get install chkrootkit -y &> /dev/null
-	echo ""
-	echo "Executing a chkrootkit scan..."
-	echo ""
-	chkrootkit -q
+	lynis audit system
 	echo ""
 	read -n 1 -s -r -p "Press any key to continue"
 	echo ""
@@ -630,17 +603,6 @@ function scans(){
 	echo "crontab -l -u root"
 	echo ""
 	crontab -l -u root
-	echo ""
-	read -n 1 -s -r -p "Press any key to continue"
-	echo ""
-	
-	# searching sus files
-	echo ""
-	echo "Checking for unordinary files..."
-	echo ""
-	find / -type d -perm -0002 2> /dev/null
-	find / -nouser 2> /dev/null
-	find / -nogroup 2> /dev/null
 	echo ""
 	read -n 1 -s -r -p "Press any key to continue"
 	echo ""
@@ -732,251 +694,6 @@ function scans(){
 
 	echo ""
 	echo "Exiting scans..."
-	sleep 1
-}
-# displays services menu
-function servicesMenu(){
-	clear
-	echo "What service do you want to install?"
-	echo "1) SSH"
-	echo "2) FTP"
-	echo "3) Apache"
-	echo "4) Samba"
-	echo "Choose an option 1-4"
-	read -r service
-	case "$service" in
-		1) 
-			echo ""
-			echo "Loading SSH..."
-			sleep 1
-			ssh
-			;;
-		2)
-			echo ""
-			echo "Loading FTP..."
-			sleep 1
-			ftp
-			;;
-		3)
-			echo ""
-			echo "Loading Apache..."
-			sleep 1
-			apache
-			;;
-		4)
-			echo ""
-			echo "Loading Samba..."
-			sleep 1
-			samba
-			;;
-esac
-}
-
-# ssh function
-function ssh(){
-	echo ""
-	echo "Installing SSH..."
-	apt install ssh openssh-server openssh-client -y &> /dev/null
-	echo ""
-	echo "Configuring SSH"
-	chown root:root /etc/ssh/sshd_config &> /dev/null
-	chmod og-rwx /etc/ssh/sshd_config &> /dev/null
-	if [[ $(grep 'PermitRootLogin' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/PermitRootLogin/ c\PermitRootLogin no' /etc/ssh/sshd_config
-	else
-		echo "PermitRootLogin no" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Setting Log Level..."
-	if [[ $(grep 'LogLevel' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/LogLevel/ c\LogLevel INFO' /etc/ssh/sshd_config
-	else
-		echo "LogLevel INFO" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Setting Max Authentication Attempts..."
-	if [[ $(grep 'MaxAuthTries' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/MaxAuthTries/ c\MaxAuthTries 3' /etc/ssh/sshd_config
-	else
-		echo "MaxAuthTries 3" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Using PAM..."
-	if [[ $(grep 'UsePAM' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/UsePAM/ c\UsePAM yes' /etc/ssh/sshd_config
-	else
-		echo "UsePAM yes" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Disabling Forwarding..."
-	if [[ $(grep 'AllowTcpForwarding' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/AllowTcpForwarding/ c\AllowTcpForwarding no' /etc/ssh/sshd_config
-	else
-		echo "AllowTcpForwarding no" >> /etc/ssh/sshd_config
-	fi
-	if [[ $(grep 'X11Forwarding' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/X11Forwarding/ c\X11Forwarding no' /etc/ssh/sshd_config
-	else
-		echo "X11Forwarding no" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Changing Protocols..."
-	if [[ $(grep 'Protocol' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/Protocol/ c\Protocol 2' /etc/ssh/sshd_config
-	else
-		echo "Protocol 2" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Disabling Empty Passwords..."
-	if [[ $(grep 'PermitEmptyPasswords' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/PermitEmptyPasswords/ c\PermitEmptyPasswords no' /etc/ssh/sshd_config
-	else
-		echo "PermitEmptyPasswords no" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Enabling Strict Mode..."
-	if [[ $(grep 'StrictModes' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/StrictModes/ c\StrictModes yes' /etc/ssh/sshd_config
-	else
-		echo "StrictModes yes" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Changing ports..."
-	if [[ $(grep 'Port' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/Port/ c\Port 222' /etc/ssh/sshd_config
-	else
-		echo "Port 222" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Ignoring RHosts..."
-	if [[ $(grep 'IgnoreRHosts' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/IgnoreRHosts/ c\IgnoreRHosts yes' /etc/ssh/sshd_config
-	else
-		echo "IgnoreRHosts yes" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Disabling Host Based Authentication..."
-	if [[ $(grep 'HostBasedAuthentication' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/HostBasedAuthentication/ c\HostBasedAuthentication no' /etc/ssh/sshd_config
-	else
-		echo "HostBasedAuthentication no" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Disabling User Environments..."
-	if [[ $(grep 'PermitUserEnvironment' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/PermitUserEnvironment/ c\PermitUserEnvironment no' /etc/ssh/sshd_config
-	else
-		echo "PermitUserEnvironment no" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Ending Idle Clients..."
-	if [[ $(grep 'ClientAliveInterval' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/ClientAliveInterval/ c\ClientAliveInterval 300' /etc/ssh/sshd_config
-	else
-		echo "ClientAliveInterval 300" >> /etc/ssh/sshd_config
-	fi
-	if [[ $(grep 'ClientAliveCountMax' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/ClientAliveCountMax/ c\ClientAliveCountMax 0' /etc/ssh/sshd_config
-	else
-		echo "ClientAliveCountMax 0" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Configuring Login Grace Period..."
-	if [[ $(grep 'LoginGraceTime' /etc/ssh/sshd_config) ]]
-	then
-		sed -i '/LoginGraceTime/ c\LoginGraceTime 60' /etc/ssh/sshd_config
-	else
-		echo "LoginGraceTime 60" >> /etc/ssh/sshd_config
-	fi
-	echo ""
-	echo "Exiting SSH"
-	sleep 1
-}
-
-# ftp function
-function ftp(){
-	echo ""
-	echo "Installing FTP..."
-	apt install vsftpd -y &> /dev/null
-	echo ""
-	echo "Disabling anonymous access..."
-	if [[ $(grep 'anonymous_enable' /etc/vsftpd.conf) ]]
-	then
-		sed -i '/anonymous_enable/ c\anonymous_enable=NO' /etc/vsftpd.conf
-	else
-		echo "anonymous_enable=NO" >> /etc/vsftpd.conf
-	fi
-	echo ""
-	echo "Jailing users to home directory..."
-	if [[ $(grep 'chroot_local_user' /etc/vsftpd.conf) ]]
-	then
-		sed -i '/chroot_local_user/ c\chroot_local_user=YES' /etc/vsftpd.conf
-	else
-		echo "chroot_local_user=YES" >> /etc/vsftpd.conf
-	fi
-	echo ""
-	echo "Exiting FTP..."
-	sleep 1
-}
-
-# apache function
-function apache(){
-	echo ""
-	echo "Installing Apache..."
-	apt install apache2 -y &> /dev/null
-	echo ""
-	echo "Hiding Host OS..."
-	if [[ $(grep 'ServerSignature' /etc/apache2/apache2.conf) ]]
-	then
-		sed -i '/ServerSignature/ c\ServerSignature Off' /etc/apache2/apache2.conf
-	else
-		echo "ServerSignature Off" >> /etc/apache2/apache2.conf
-	fi
-	if [[ $(grep 'ServerTokens' /etc/apache2/apache2.conf) ]]
-	then
-		sed -i '/ServerTokens/ c\ServerTokens Prod' /etc/vsftpd.conf
-	else
-		echo "ServerTokens Prod" >> /etc/vsftpd.conf
-	fi
-	echo ""
-	echo "Limiting Large Requests..."
-	if [[ $(grep 'LimitRequestBody' /etc/apache2/apache2.conf) ]]
-	then
-	    sed -i '/LimitRequestBody c\LimitRequestBody 204800' /etc/apache2/apache2.conf
-	else
-	    echo "LimitRequestBody 204800" >> /etc/apache2/apache2.conf
-	fi
-	echo ""
-	echo "Checking for php backdoors..."
-	find /var/www/ -iname *.php
-	read -n 1 -s -r -p "Press any key to continue"
-	echo ""
-	echo "Exiting apache..."
-	sleep 1
-}
-
-# samba function
-function samba(){
-	echo ""
-	echo "Installing Samba..."
-	apt install samba -y &> /dev/null
-	echo ""
-	echo "Exiting samba..."
 	sleep 1
 }
 
@@ -1081,12 +798,6 @@ do
 			scans
 			;;
 		6)
-			echo ""
-			echo "Loading services..."
-			sleep 1
-			servicesMenu
-			;;
-		7)
 			echo ""
 			echo "Exiting..."
 			sleep 1
