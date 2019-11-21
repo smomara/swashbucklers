@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# cyberpatriot bash script for ubuntu 16
+# cyberpatriot bash script for ubuntu 14
 # swashbucklers
 
 # checks for sudo
@@ -42,16 +42,11 @@ function updates(){
 	# automatic and secure updates
 	echo ""
 	echo "Configuring apt..."
-	apt-get install unattended-upgrades -y &> /dev/null
+	apt-get install unattended-upgrades -y
 	dpkg-reconfigure unattended-upgrades
-	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted" >> /etc/apt/sources.list
-	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates universe" >> /etc/apt/sources.list
-	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates multiverse" >> /etc/apt/sources.list
-	echo "deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted" >> /etc/apt/sources.list
-	echo "deb http://security.ubuntu.com/ubuntu/ xenial-security universe" >> /etc/apt/sources.list
-	echo "deb http://security.ubuntu.com/ubuntu/ xenial-security multiverse" >> /etc/apt/sources.list
-	sort /etc/apt/sources.list -u --output=/etc/apt/sources.list
-	sed -i '/^[[:blank:]]*#/d;s/#.*//' /etc/apt/sources.list
+	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted multiverse universe" > /etc/apt/sources.list
+	echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted multiverse universe" >> /etc/apt/sources.list
+	echo "deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted multiverse universe" >> /etc/apt/sources.list
 	touch /etc/apt/apt.conf.d/10periodic
 	if [[ $(grep 'APT::Periodic::Update-Package-Lists' /etc/apt/apt.conf.d/10periodic) ]]
 	then
@@ -117,8 +112,7 @@ function updates(){
 	echo ""
 	echo "Installing updates (grab some snacks, this is going to take a while)..."
 	apt-get update 
-	apt-get dist-upgrade -y
-	apt-get update 
+	apt-get dist-upgrade -y 
 	apt-get autoremove -y 
 
 	echo ""
@@ -481,6 +475,14 @@ function network(){
 	echo ""
 
 	# configures sysctl
+	echo "Check sysctl directory for malicious or unnecessary configurations..."
+	sleep 1
+	echo ""
+	echo "/etc/sysctl.d/"
+	echo ""
+	find /etc/sudoers.d | paste -s -d ',' | cut -d, -f2-
+	echo ""
+	read -n 1 -s -r -p "Press any key to continue"
 	echo ""
 	echo "Configuring sysctl..."
 
@@ -564,6 +566,12 @@ function network(){
 			sed -i '/net.ipv4.conf.default.rp_filter/ c\net.ipv4.conf.default.rp_filter = 1' /etc/sysctl.conf
 		else
 			echo "net.ipv4.conf.default.rp_filter = 1" >> /etc/sysctl.conf
+		fi
+		if [[ $(grep 'kernel.randomize_va_space' /etc/sysctl.conf) ]]
+		then
+			sed -i '/kernel.randomize_va_space/ c\kernel.randomize_va_space = 2' /etc/sysctl.conf
+		else
+			echo "kernel.randomize_va_space = 2" >> /etc/sysctl.conf
 		fi
 	
 	# applies changes to sysctl
