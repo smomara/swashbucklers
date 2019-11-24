@@ -26,7 +26,7 @@ Write-Host "`nRemoving the following shares: $extraShares`n-----------------`n`n
 
 #  Deletes the SMB shares
 foreach ($share in $extraShares) {
-    # Remove-SmbShare -Name $share -Force
+    Remove-SmbShare -Name $share -Force
     Write-Host "Removed $share`n"
 }
 

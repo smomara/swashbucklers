@@ -1,0 +1,1 @@
+$features = Get-WindowsOptionalFeature -Online | Format-Table

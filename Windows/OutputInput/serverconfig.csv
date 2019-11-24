@@ -1,0 +1,4 @@
+displayName, name, status, startType
+Windows Update, wuauserv, Started, Automatic
+Windows Event Log, EventLog, Started, Automatic
+BitLocker Drive Encryption Service, BDESVC, Started, Automatic

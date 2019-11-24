@@ -27,8 +27,13 @@ if (Test-Path .\OutputInput\rollbackConfig.csv) {
 }
 New-Item -Path .\OutputInput -ItemType File -Name "rollbackConfig.csv" > $null # Creates csv for output
 
-
-$config = Import-Csv -Path .\OutputInput\config.csv -Delimiter ","
+$win_version = Get-WmiObject -class Win32_OperatingSystem
+$OS = $win_version.caption -join $win_version.version
+if ($OS -match "Server") { # Checks if the image is a Server image
+  $config = Import-Csv -Path .\OutputInput\win10config.csv -Delimiter ","
+} else {
+  $config = Import-Csv -Path .\OutputInput\win10config.csv -Delimiter ","
+}
 $allprocesses = Get-Service
 
 Write-Host "Files created. Now configuring the services."

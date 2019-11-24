@@ -43,3 +43,6 @@ Xbox Accessory Management Service, XboxGipSvc, Stopped, Disabled
 Xbox Live Auth Manager, XblAuthManager, Stopped, Disabled
 Xbox Live Game Save, XblGameSave, Stopped, Disabled
 Xbox Live Networking Service, XboxNetApiSvc, Stopped, Disabled
+Windows Update, wuauserv, Started, Automatic
+Windows Event Log, EventLog, Started, Automatic
+BitLocker Drive Encryption Service, BDESVC, Started, Automatic

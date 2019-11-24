@@ -30,20 +30,45 @@ function Confirm-Group([string]$user, [string]$group) {
     return $inGroup
 }
 
-$password = Get-RandomCharacters -length 6 -characters 'abcdefghiklmnoprstuvwxyz'
-$password += Get-RandomCharacters -length 4 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ'
-$password += Get-RandomCharacters -length 3 -characters '1234567890'
-$password += Get-RandomCharacters -length 3 -characters '!"$%&/()=?}][{@#*+'
-# 16 character password - strong as well
+function Find-Groups([String[]]$userList, [String]$type) {
+    foreach ($user in $userList) {
+        $listOfGroups = @()
+        foreach ($group in (Get-LocalGroup)) {
+            $inGroup = Get-LocalGroupMember -Name $group | Select-Object Name | ForEach-Object { $_.Name.split("\")[-1] }
+            foreach ($groupmember in $inGroup) {
+                if ($groupmember -eq $user) {
+                    $listOfGroups += $group
+                }
+            }
+        }
+        Write-Host "User $user [$type] is in the following groups:"($listOfGroups -join ", ")
+        if ($type -eq "Bad" -and -not ($user -eq "Administrator" -or $user -eq "DefaultAccount" -or $user -eq "Guest" -or $user -eq "WDAGUtilityAccount") -and $listOfGroups.length -ge 1) {
+            foreach ($group in $listOfGroups) {
+                Remove-LocalGroupMember -Group $group -Member $user 
+            }
+            Write-Host "`t$user has been removed from all groups as they are bad"
+        }
+    }
+}
 
-$plaintextPassword = $password
-$password = Edit-String $password # randomizes password string
+# $password = Get-RandomCharacters -length 6 -characters 'abcdefghiklmnoprstuvwxyz'
+# $password += Get-RandomCharacters -length 4 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ'
+# $password += Get-RandomCharacters -length 3 -characters '1234567890'
+# $password += Get-RandomCharacters -length 3 -characters '!"$%&/()=?}][{@#*+'
+# # 16 character password - strong as well
+
+# $plaintextPassword = $password
+# $password = Edit-String $password # randomizes password string
+
+# Set password
+# $password = ConvertTo-SecureString "IWon’t4getThis1_" -AsPlainText -Force
+$password = "IWon’t4getThis1_"
 
 if (Test-Path .\OutputInput\swashbucklersPassword.txt) {
     Remove-item .\OutputInput\swashbucklersPassword.txt
 }
 New-Item -Path .\OutputInput -ItemType File -Name "swashbucklersPassword.txt" > $null
-Add-Content -Path .\OutputInput\swashbucklersPassword.txt -Value $plaintextPassword
+Add-Content -Path .\OutputInput\swashbucklersPassword.txt -Value "IWon't4getThis1_"
 
 if (Test-Path .\OutputInput\goodUsers.txt) {
     Remove-item .\OutputInput\goodUsers.txt
@@ -53,7 +78,7 @@ New-Item -Path .\OutputInput -Name "goodUsers.txt" -ItemType File > $null # crea
 Write-Host "Make sure goodUsers.txt has all of the users with all of the administrators first! (separated by lines)"
 Invoke-Item -Path .\OutputInput\goodUsers.txt
 
-Read-Host "Enter a character to continue.."
+Read-Host "Press enter to continue.."
 
 $UserAccounts = Get-LocalUser
 [int]$adminnumber = Read-Host "How many administrator accounts are there supposed to be?"
@@ -63,46 +88,54 @@ $UserAccounts = Get-LocalUser
 $badUsers = Compare-Object -ReferenceObject $UserAccounts -DifferenceObject $AllowedAccounts -PassThru
 
 Clear-Host
-Write-Host "`r`n`r`n----Admin Configuration----`r`n`r`n"
+Write-Host "----Admin Configuration----`r`n`r`n"
 ForEach ($user in $AdminsAllowed) {
-    Write-Host "Adding $user [Admin account] to the Administrator group and configuring their settings."
+    Write-Host "Adding $user [Admin] to the Administrator group and configuring their settings."
     if ( !(Confirm-Group $user "Administrators") ) {  # If the user is not in the administrator group, add them to it
         Add-LocalGroupMember -Group "Administrators" -Member $user
     }
-    Set-LocalUser -Name $user -Password $password -UserMayChangePassword $true -PasswordNeverExpires $false # sets password, account can expire, user can change password
+    net user $user /passwordchg:yes /passwordreq:yes /active:yes /logonpasswordchg:no > $null
+    Set-LocalUser -Name $user -PasswordNeverExpires $false # password expires
     Enable-LocalUser -Name $user
 }
 
 Write-Host "`r`n`r`n----User Configuration----`r`n`r`n"
 ForEach ($user in $UsersAllowed) {
-    Write-Host "Removing $user [User account] from the Administrator group and configuring their settings."
+    Write-Host "Removing $user [User] from the Administrator group and configuring their settings."
     if ( -not (Confirm-Group $user "Users") ) {
         Add-LocalGroupMember -Group "Users" -Member $user
     }
     if (Confirm-Group $user "Administrators") {
         Remove-LocalGroupMember -Group "Administrators" -Member $user  # Removes user from the Administrator group
     }
-    Set-LocalUser -Name $user -Password $password -UserMayChangePassword $true -PasswordNeverExpires $false  # sets password, account can expire, user can change password
+    net user $user /passwordchg:yes /passwordreq:yes /active:yes /logonpasswordchg:no > $null
+    Set-LocalUser -Name $user -PasswordNeverExpires $false # password expires
     Enable-LocalUser -Name $user
 }
 
 Write-Host "`r`n`r`n----Bad Guy Configuration----`r`n`r`n"
 ForEach ($user in $badUsers) {
-    Write-Host "Removing and disabling $user [Bad account]."
+    Write-Host "Removing and disabling $user [Bad]."
     if (Confirm-Group $user "Administrators") {
         if ( !($user -match "Administrator") ) {  # Prevents the admin account from being removed
             Remove-LocalGroupMember -Group "Administrators" -Member $user  # Removes user from the Administrator group
         }
     }
+    net user $user /passwordchg:yes /passwordreq:yes /active:no /logonpasswordchg:no > $null
+    Set-LocalUser -Name $user -PasswordNeverExpires $false # password expires
     Disable-LocalUser -Name $user
 }
+
 Write-Host "`r`nDisabling the Administrator and Guest account."
 Disable-LocalUser -Name "Administrator"
 Disable-LocalUser -Name "Guest"
+
+Write-Host "`r`nPlease set the password for all accounts now. Sorry for the inconvience."
+Invoke-Item -Path .\OutputInput\swashbucklersPassword.txt
+Start-Process lusrmgr.msc
 # Disables admin and guest accounts
 
-
-Read-Host "Enter a character to continue.."
+Read-Host "Press enter to continue.."
 Clear-Host
 
 $newuser = 'y'
@@ -134,7 +167,20 @@ while ($newgroup -eq 'y') {
         }
     }
 }
+
+Clear-Host
+# Checks all groups each user is in
+Write-Host "----Listing all group members----`r`n`r`n"
+
+Find-Groups $AdminsAllowed "Admin"
+Write-Host "`r`n------`r`n"
+Find-Groups $UsersAllowed "User"
+Write-Host "`r`n------`r`n"
+Find-Groups $badUsers "Bad"
+
+Read-Host "`r`n------`r`n`r`nPress enter to continue"
+
 Clear-Host
 Write-Host "Users have been audited."
-Write-Host "The password is $plaintextPassword. It has been written in swashbucklersPassword.txt"
-Read-Host "Press any character to exit the script"
+Write-Host "The password is 'IWon’t4getThis1_'. It has been written in swashbucklersPassword.txt"
+Read-Host "Press enter to exit the script"
