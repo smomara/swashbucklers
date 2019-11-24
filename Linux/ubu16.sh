@@ -331,7 +331,7 @@ Then update the dconf settings:
 	echo ""
 	echo "Configure the GUI to not allow unattended or automatic login to the system.
 
-Add or edit the following line in the "/etc/gdm3/custom.conf" file directly below the "[daemon]" tag:
+Add or edit the following line in the /etc/gdm3/custom.conf file directly below the [daemon] tag:
 
 AutomaticLoginEnable=false"
 	echo ""
@@ -435,8 +435,14 @@ function userPolicy(){
 	echo ""
 	grub-mkpasswd-pbkdf2
 	echo ""
-	echo 'Uing the hash from the ouput, modify the /etc/grub.d/10_linux file with the following command to add a boot password for the root entry:
-	# cat << EOF > set superusers=
+	echo 'Edit file /etc/grub.d/40_custom with the following lines:
+	set superusers=/"root/"
+	password_pbkdf2 root hash'
+	echo ""
+	read -n 1 -s -r -p "Press any key to continue after following the above instructions"
+	echo ""
+	sudo update-grub
+	
 	
 	echo ""
 	echo "Exiting user policy..."
