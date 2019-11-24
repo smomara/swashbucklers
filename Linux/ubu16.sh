@@ -376,19 +376,19 @@ function userPolicy(){
 	# configures common-password
 	echo ""
 	echo "Enforcing password complexity and history..."
-	if [[ $(grep -v '^#' /etc/pam.d/common-password | grep 'pam_cracklib.so' /etc/pam.d/common-password) ]]
+	if [[ $(grep -v '^pam_cracklib.so' /etc/pam.d/common-password) ]]
 	then
 		sed -i 's/^password.*pam_cracklib.so/password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1/g' /etc/pam.d/common-password
 	else
 		echo "password requisite pam_cracklib.so retry=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1" >> /etc/pam.d/common-password
 	fi
-	if [[ $(grep -v '^#' /etc/pam.d/common-password | grep 'pam_pwhistory.so') ]]
+	if [[ $(grep -v '^pam_pwhistory.so' /etc/pam.d/common-password) ]]
 	then
 		sed -i 's/^password.*pam_pwhistory.so/password required pam_pwhistory.so remember=24 use_authtok/g' /etc/pam.d/common-password
 	else
 		echo "password required pam_pwhistory.so remember=24 use_authtok" >> /etc/pam.d/common-password
 	fi
-	if [[ $(grep -v '^#' /etc/pam.d/common-password | grep 'pam_unix.so') ]]
+	if [[ $(grep -v '^pam_unix.so' /etc/pam.d/common-password) ]]
 	then
 		sed -i 's/^password.*pam_unix.so/password [success=1 default=ignore] pam_unix.so sha512/g' /etc/pam.d/common-password
 	else
@@ -443,8 +443,20 @@ function userPolicy(){
 	echo ""
 	sudo update-grub
 	
-	
 	echo ""
+	echo "Installing and configuring auditd..."
+	echo ""
+	apt install auditd -y
+	service auditd start
+	if [[ $(grep '^disk_full_action' /etc/audit/auditd.conf) ]]
+	then
+		sed -i 's/^disk_full_action/disk_full_action = HALT/g' /etc/pam.d/common-password
+	else
+		echo "disk_full_action = HALT" >> /etc/pam.d/common-password
+	fi
+	echo "-a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=100 -F auid!=4294967295 -k perm_access" >> /etc/audit/auditd.conf
+	echo "-a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=100 -F auid!=4294967295 -k perm_access" >> /etc/audit/auditd.conf
+	
 	echo "Exiting user policy..."
 	sleep 1
 
@@ -601,7 +613,7 @@ function network(){
 		else
 			echo "net.ipv4.conf.default.rp_filter = 1" >> /etc/sysctl.conf
 		fi
-		if [[ $(grep 'kernel.randomize_va_space' /etc/sysctl.conf) ]]
+		if [[ $(grep '^kernel.randomize_va_space' /etc/sysctl.conf) ]]
 		then
 			sed -i 's/kernel.randomize_va_space/kernel.randomize_va_space = 2/g' /etc/sysctl.conf
 		else
@@ -783,6 +795,12 @@ function ssh(){
 		sed -i 's/X11Forwarding/X11Forwarding yes/g' /etc/ssh/sshd_config
 	else
 		echo "X11Forwarding yes" >> /etc/ssh/sshd_config
+	fi
+	if [[ $(grep '^UsePrivilegeSeperation' /etc/ssh/sshd_config) ]]
+	then
+		sed -i 's/UsePrivilegeSeperation/UsePrivilegeSeperation yes/g' /etc/ssh/sshd_config
+	else
+		echo "UsePrivilegeSeperation yes" >> /etc/ssh/sshd_config
 	fi
 }
 
