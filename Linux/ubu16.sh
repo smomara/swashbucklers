@@ -431,6 +431,14 @@ function userPolicy(){
 	chmod 600 /etc/gshadow~ &> /dev/null
 	
 	echo ""
+	echo "Configuring GRUB..."
+	echo ""
+	grub-mkpasswd-pbkdf2
+	echo ""
+	echo 'Uing the hash from the ouput, modify the /etc/grub.d/10_linux file with the following command to add a boot password for the root entry:
+	# cat << EOF > set superusers=
+	
+	echo ""
 	echo "Exiting user policy..."
 	sleep 1
 
@@ -640,6 +648,7 @@ function scans(){
 	echo "Removing .shosts files..."
 	echo ""
 	find / -iname '*.shosts' -exec rm -f {} \;
+	find / -iname shosts.equiv -exec rm -f {} \;
 	
 	# searching for packages
 	while :
@@ -763,11 +772,11 @@ function ssh(){
 	else
 		echo "Protocol 2" >> /etc/ssh/sshd_config
 	fi
-	if [[ $(grep '^X11Forwardinghd_confi") ]]
+	if [[ $(grep '^X11Forwarding' /etc/ssh/sshd_config) ]]
 	then
-		sed -i 's/Protocol/Protocol 2/g' /etc/ssh/sshd_config
+		sed -i 's/X11Forwarding/X11Forwarding yes/g' /etc/ssh/sshd_config
 	else
-		echo "Protocol 2" >> /etc/ssh/sshd_config
+		echo "X11Forwarding yes" >> /etc/ssh/sshd_config
 	fi
 }
 
