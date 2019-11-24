@@ -32,7 +32,8 @@ function menu(){
 	echo "3) User Policy"
 	echo "4) Network"
 	echo "5) Scans"
-	echo "6) Exit"
+	echo "6) SSH"
+	echo "7) Exit"
 	echo "Choose an option: 1-6"
 }
 
@@ -233,10 +234,10 @@ function usersAndGroups(){
 		fi
 	done
 
-	# disables guest user
+	# disables guest user and automatic login
 	echo ""
-	echo "Disabling guest user..."
-	if [[ $(grep 'allow-guest' /etc/lightdm/lightdm.conf) ]]
+	echo "Configuring login..."
+	if [[ $(grep '^allow-guest' /etc/lightdm/lightdm.conf) ]]
 	then
 		sed -i 's/allow-guest/allow-guest=false/g' /etc/lightdm/lightdm.conf
 	else
@@ -317,6 +318,26 @@ function usersAndGroups(){
 	read -n 1 -s -r -p "Press any key to continue"
 	echo ""
 
+	echo "Configure the system to disable the Ctrl-Alt-Delete sequence when using GNOME by creating or editing the /etc/dconf/db/local.d/00-disable-CAD file.
+
+Add the setting to disable the Ctrl-Alt-Delete sequence for GNOME:
+
+[org/gnome/settings-daemon/plugins/media-keys]
+logout=’’
+
+Then update the dconf settings:
+
+# dconf update"
+	echo ""
+	echo "Configure the GUI to not allow unattended or automatic login to the system.
+
+Add or edit the following line in the "/etc/gdm3/custom.conf" file directly below the "[daemon]" tag:
+
+AutomaticLoginEnable=false"
+	echo ""
+	read -n 1 -s -r -p "Press any key to continue"
+	echo ""
+	
 	echo ""
 	echo "Exiting users and groups..."
 	sleep 1
@@ -607,6 +628,19 @@ function scans(){
 	read -n 1 -s -r -p "Press any key to continue"
 	echo ""
 	
+	echo ""
+	echo "Removing unneccesary packages..."
+	echo ""
+	apt remove telnetd
+	apt remove nis
+	apt remove tftpd-hpa
+	apt remove rsh-server
+	
+	echo ""
+	echo "Removing .shosts files..."
+	echo ""
+	find / -iname '*.shosts' -exec rm -f {} \;
+	
 	# searching for packages
 	while :
 	do
@@ -695,6 +729,46 @@ function scans(){
 	echo ""
 	echo "Exiting scans..."
 	sleep 1
+}
+
+function ssh(){
+	echo ""
+	echo "Installing SSH..."
+	apt install ssh openssh-server openssh-client -y
+	echo ""
+	echo "Configuring SSH..."
+	chown root:root /etc/ssh/sshd_config &> /dev/null
+	chmod og-rwx /etc/ssh/sshd_config &> /dev/null
+	if [[ $(grep '^PermitRootLogin' /etc/ssh/sshd_config) ]]
+	then
+		sed -i 's/PermitRootLogin/PermitRootLogin no/g' /etc/ssh/sshd_config
+	else
+		echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+	fi
+	if [[ $(grep '^PermitEmptyPasswords' /etc/ssh/sshd_config) ]]
+	then
+		sed -i 's/PermitEmptyPasswords/PermitEmptyPasswords no/g' /etc/ssh/sshd_config
+	else
+		echo "PermitEmptyPasswords no" >> /etc/ssh/sshd_config
+	fi
+	if [[ $(grep '^PermitUserEnvironment' /etc/ssh/sshd_config) ]]
+	then
+		sed -i 's/PermitUserEnvironment/PermitUserEnvironment no/g' /etc/ssh/sshd_config
+	else
+		echo "PermitUserEnvironment no" >> /etc/ssh/sshd_config
+	fi
+	if [[ $(grep '^Protocol' /etc/ssh/sshd_config) ]]
+	then
+		sed -i 's/Protocol/Protocol 2/g' /etc/ssh/sshd_config
+	else
+		echo "Protocol 2" >> /etc/ssh/sshd_config
+	fi
+	if [[ $(grep '^X11Forwardinghd_confi") ]]
+	then
+		sed -i 's/Protocol/Protocol 2/g' /etc/ssh/sshd_config
+	else
+		echo "Protocol 2" >> /etc/ssh/sshd_config
+	fi
 }
 
 echo '
@@ -798,6 +872,12 @@ do
 			scans
 			;;
 		6)
+			echo ""
+			echo "Loading SSH..."
+			sleep 1
+			ssh
+			;;
+		7)
 			echo ""
 			echo "Exiting..."
 			sleep 1
