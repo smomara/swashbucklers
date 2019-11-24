@@ -456,6 +456,7 @@ function userPolicy(){
 	fi
 	echo "-a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=100 -F auid!=4294967295 -k perm_access" >> /etc/audit/auditd.conf
 	echo "-a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=100 -F auid!=4294967295 -k perm_access" >> /etc/audit/auditd.conf
+	echo "-w /etc/security/opasswd -p wa -k identity"
 	
 	echo "Exiting user policy..."
 	sleep 1
@@ -766,6 +767,7 @@ function ssh(){
 	echo "Configuring SSH..."
 	chown root:root /etc/ssh/sshd_config &> /dev/null
 	chmod og-rwx /etc/ssh/sshd_config &> /dev/null
+	chmod 0644 /etc/ssh/*key.pub &> /dev/null
 	if [[ $(grep '^PermitRootLogin' /etc/ssh/sshd_config) ]]
 	then
 		sed -i 's/PermitRootLogin/PermitRootLogin no/g' /etc/ssh/sshd_config
