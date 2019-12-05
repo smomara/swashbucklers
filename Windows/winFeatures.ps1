@@ -1,1 +1,1 @@
-$features = Get-WindowsOptionalFeature -Online | Format-Table
+Get-WindowsOptionalFeature -Online | Format-Table
