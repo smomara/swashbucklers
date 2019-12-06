@@ -34,7 +34,7 @@ $wpf.startButton.add_Click({
         $ScriptToRun = "\firewall.ps1"
         $path = [String](Get-Location)
         Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
-        $wpf.sharesAuditing.isChecked = $false
+        $wpf.firewall.isChecked = $false
     }
     if ($wpf.displayRecentFiles.isChecked) {
         $ScriptToRun = "\mostRecent.ps1"
@@ -70,19 +70,19 @@ $wpf.startButton.add_Click({
         $ScriptToRun = "\winFeatures.ps1"
         $path = [String](Get-Location)
         Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
-        $wpf.sysInfo.isChecked = $false
+        $wpf.windowsFeatures.isChecked = $false
     }
     if ($wpf.retrieveUpdates.isChecked) {
         $ScriptToRun = "\windowsUpdateRetriv.ps1"
         $path = [String](Get-Location)
         Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
-        $wpf.sysInfo.isChecked = $false
+        $wpf.retrieveUpdates.isChecked = $false
     }
     if ($wpf.saveOurSouls.isChecked) {
         $ScriptToRun = "\vitalToSuccess.ps1"
         $path = [String](Get-Location)
         Start-Process -FilePath "powershell" -Verb RunAs -Wait -ArgumentList "-File $path\$ScriptToRun $path"
-        $wpf.sysInfo.isChecked = $false
+        $wpf.saveOurSouls.isChecked = $false
     }
     if ($wpf.rebootOnceDone.isChecked) {
         Restart-Computer
